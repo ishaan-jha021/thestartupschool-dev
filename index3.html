@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Startup School | Replace Theory with Execution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --brand-green: #4ade80;
+            --brand-blue: #3b82f6;
+            --brand-purple: #a855f7;
+            --bg-deep: #020202;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--brand-green), var(--brand-blue), var(--brand-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(74, 222, 128, 0.4);
+            transform: translateY(-10px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-mesh {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(74, 222, 128, 0.05) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(168, 85, 247, 0.05) 0, transparent 50%);
+            z-index: -1;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--brand-green);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+        .curriculum-grid > div {
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 2rem;
+            position: relative;
+        }
+        .curriculum-grid > div::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 9px;
+            height: 9px;
+            background: var(--brand-green);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center font-black text-black text-xl shadow-[0_0_20px_rgba(255,255,255,0.2)]">S</div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-black tracking-widest uppercase leading-none">The Startup</span>
+                    <span class="text-xs font-bold text-green-500 uppercase tracking-tighter">School</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="#philosophy" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Philosophy</a>
+                <a href="#curriculum" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Curriculum</a>
+                <a href="#guild" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">The Guild</a>
+                <a href="#comparison" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">MBA vs Us</a>
+                <button onclick="toggleWaitlist()" class="px-6 py-2.5 bg-green-500 text-black rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all">Apply Now</button>
+            </div>
+            <button class="lg:hidden text-white" id="menu-toggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="hero-mesh"></div>
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center z-10">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-bold tracking-widest uppercase mb-8">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    Admissions Closing: Cohort 04
+                </div>
+                <h1 class="text-6xl lg:text-8xl font-black leading-[1.05] mb-8">
+                    Replacing Theory <br>with <span class="gradient-text">Execution.</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+                    Stop watching founder interviews and start conducting your own. A 12-week high-intensity sprint for professionals ready to bridge the "Execution Readiness Gap."
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <button onclick="toggleWaitlist()" class="px-10 py-5 bg-white text-black font-black rounded-2xl hover:bg-green-500 transition-all flex items-center justify-center gap-3 text-lg">
+                        Apply to Cohort <i data-lucide="arrow-right"></i>
+                    </button>
+                    <a href="#comparison" class="px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all flex items-center justify-center gap-3 text-lg">
+                        See the ROI
+                    </a>
+                </div>
+                <div class="mt-16 flex flex-wrap items-center gap-6 opacity-40 grayscale">
+                    <span class="text-xs font-black uppercase tracking-[0.2em] text-white">Backed by operators from:</span>
+                    <div class="flex gap-8 items-center">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" class="h-5" alt="Google">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/amazon-web-services.png" class="h-7" alt="AWS">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/stripe.png" class="h-5" alt="Stripe">
+                    </div>
+                </div>
+            </div>
+            <div class="relative hidden lg:block">
+                <div class="glass-card p-10 rounded-[3rem] border-white/10 relative z-10 overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <i data-lucide="terminal" class="w-32 h-32"></i>
+                    </div>
+                    <div class="space-y-8 mono text-xs">
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                            <span class="text-green-500 font-bold">$ init founder_sprint</span>
+                            <div class="mt-2 text-gray-500 italic">// Week 01: Problem Deconstruction</div>
+                            <div class="text-white mt-1">-> 42 User Interviews scheduled.</div>
+                            <div class="text-white">-> 12 Pain points identified.</div>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                            <span class="text-blue-500 font-bold">$ deploy mvp_v1</span>
+                            <div class="mt-2 text-gray-500 italic">// Week 06: Rapid Prototyping</div>
+                            <div class="text-white mt-1">-> 128 Waitlist signups.</div>
+                            <div class="text-white">-> 85% Value confirmation.</div>
+                        </div>
+                        <div class="pt-4 flex justify-between items-center">
+                            <div class="flex flex-col">
+                                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Readiness Score</span>
+                                <span class="text-2xl font-black text-white">94/100</span>
+                            </div>
+                            <div class="w-24 h-24 rounded-full border-8 border-green-500/20 flex items-center justify-center relative">
+                                <div class="absolute inset-0 border-t-8 border-green-500 rounded-full animate-spin"></div>
+                                <span class="text-[10px] font-bold">ACTIVE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Philosophy Section (The Deep Problem) -->
+    <section id="philosophy" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-24 items-center mb-32">
+                <div class="reveal">
+                    <h2 class="text-xs font-black uppercase tracking-[0.4em] text-green-500 mb-6">The Founding Thesis</h2>
+                    <h3 class="text-5xl font-black mb-8 leading-tight">India has an Idea problem, <br>not an <span class="text-red-500">Execution</span> problem.</h3>
+                    <p class="text-xl text-gray-400 leading-relaxed mb-10">
+                        Traditional B-schools teach managers how to run a corporation. They do not condition founders for the "0-to-1" chaos. 90% of early-stage failures are preventable—they are the result of poor decision-making frameworks and slow iteration loops.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                <i data-lucide="trending-down" class="text-red-400 w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Theoretical Overload</h4>
+                                <p class="text-sm text-gray-500">Learning "what" a startup is, instead of "how" to operate one.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                <i data-lucide="shield-off" class="text-blue-400 w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Low-Stakes Mentorship</h4>
+                                <p class="text-sm text-gray-500">Motivational fluff instead of brutally honest, consequence-linked feedback.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal grid grid-cols-2 gap-4">
+                    <div class="glass-card p-8 rounded-3xl mt-12">
+                        <div class="text-4xl font-black mb-2">35k+</div>
+                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">MBAs Produced Yearly</div>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl">
+                        <div class="text-4xl font-black mb-2 text-green-500">0.1%</div>
+                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">Are Startup-Ready</div>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl">
+                        <div class="text-4xl font-black mb-2 text-blue-500">12w</div>
+                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">Conditioning Cycle</div>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl -mt-12">
+                        <div class="text-4xl font-black mb-2 text-purple-500">100%</div>
+                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">Operator-Led</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who it's for -->
+            <div class="reveal grid md:grid-cols-2 gap-8">
+                <div class="bg-green-500/5 border border-green-500/10 p-12 rounded-[3rem]">
+                    <h4 class="text-2xl font-black mb-6 text-green-400">Who This Is For</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> High-potential professionals (Tech, Product, Ops)</li>
+                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> Builders with "Proof of Work" (not just resumes)</li>
+                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> Founders in the 0-to-1 pre-seed chaos</li>
+                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> Obsessive problem-solvers tired of theory</li>
+                    </ul>
+                </div>
+                <div class="bg-red-500/5 border border-red-500/10 p-12 rounded-[3rem]">
+                    <h4 class="text-2xl font-black mb-6 text-red-400">Who This Is NOT For</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> Those seeking a decorative certificate</li>
+                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> Passive observers or "wantrepreneurs"</li>
+                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> People uncomfortable with radical honesty</li>
+                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> Anyone looking for "get rich quick" shortcuts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Curriculum Breakdown -->
+    <section id="curriculum" class="py-32 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-5xl font-black mb-6">The 6-Module <span class="text-green-500">Blueprint</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Twelve weeks of relentless building. Every week is a milestone, not a lecture.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 curriculum-grid">
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 01</span>
+                    <h4 class="text-xl font-bold mt-2 mb-4">Problem Deconstruction</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Kill your darling idea. Learn to separate "Cool Tech" from "Painful Market Gaps" through 50+ customer discovery calls.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 02</span>
+                    <h4 class="text-xl font-bold mt-2 mb-4">The MVP Philosophy</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Master the "Value per Click" metric. Build and deploy a functional prototype using no-code or AI stacks within 14 days.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 300ms;">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 03</span>
+                    <h4 class="text-xl font-bold mt-2 mb-4">GTM Micro-Experiments</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Stop guessing where users are. Run low-cost growth experiments across LinkedIn, Meta, and cold-outreach channels.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 400ms;">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 04</span>
+                    <h4 class="text-xl font-bold mt-2 mb-4">Unit Economics & Ops</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Understanding the math behind the madness. CAC, LTV, and building a scalable operating system for your team.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 500ms;">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 05</span>
+                    <h4 class="text-xl font-bold mt-2 mb-4">Narrative & Pitching</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Moving from "What we do" to "Why we win." Crafting a story that creates FOMO among early-stage VCs.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 600ms;">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 06</span>
+                    <h4 class="text-xl font-bold mt-2 mb-4">The Demo Sprint</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">The Final Stress Test. Pitching to a panel of operator-mentors and angel investors in a high-pressure simulation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditional MBA vs Startup School (Investor/ROI Centric) -->
+    <section id="comparison" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black mb-20 text-center reveal">The Opportunity <span class="text-blue-500">Cost</span></h2>
+            
+            <div class="reveal overflow-x-auto">
+                <table class="w-full text-left glass-card rounded-[2.5rem] border-separate border-spacing-0 overflow-hidden">
+                    <thead>
+                        <tr class="bg-white/5">
+                            <th class="p-8 text-xs font-black uppercase tracking-widest text-gray-500">Feature</th>
+                            <th class="p-8 text-xs font-black uppercase tracking-widest text-white">Traditional MBA</th>
+                            <th class="p-8 text-xs font-black uppercase tracking-widest text-green-400">The Startup School</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-400">
+                        <tr class="border-b border-white/5">
+                            <td class="p-8 font-bold text-white">Duration</td>
+                            <td class="p-8">24 Months (Full-time)</td>
+                            <td class="p-8 text-green-400 font-bold">12 Weeks (Hybrid Sprint)</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-8 font-bold text-white">Cost (Avg)</td>
+                            <td class="p-8">₹25L – ₹40L</td>
+                            <td class="p-8 text-green-400 font-bold">₹1.2L – ₹1.8L</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-8 font-bold text-white">Primary Focus</td>
+                            <td class="p-8">General Management Theory</td>
+                            <td class="p-8 text-green-400 font-bold">0-to-1 Operational Execution</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="p-8 font-bold text-white">Network</td>
+                            <td class="p-8">Corporate Peers & Academics</td>
+                            <td class="p-8 text-green-400 font-bold">VCs, Founders & Operators</td>
+                        </tr>
+                        <tr>
+                            <td class="p-8 font-bold text-white">Outcome</td>
+                            <td class="p-8">Salary / Job Placement</td>
+                            <td class="p-8 text-green-400 font-bold">Market Traction / Fundraising</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Founder Guild & Campus Cells -->
+    <section id="guild" class="py-32 relative overflow-hidden bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal">
+                    <h2 class="text-5xl font-black mb-8 leading-tight">Beyond the Program: <br><span class="gradient-text">The Ecosystem.</span></h2>
+                    <p class="text-xl text-gray-400 mb-10 leading-relaxed">
+                        The Startup School is not a 12-week course—it’s a lifetime moat. Our ecosystem is built on the philosophy of "Builders helping Builders."
+                    </p>
+                    
+                    <div class="space-y-10">
+                        <div class="reveal">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-3">
+                                <i data-lucide="building-2" class="text-blue-500"></i> Campus Founder Cells
+                            </h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">
+                                Our collegiate B2B layer. We partner with Tier-1 engineering colleges to identify high-potential builders in their final years, providing a structured roadmap to channel their energy into ventures.
+                            </p>
+                        </div>
+                        <div class="reveal">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-3">
+                                <i data-lucide="flame" class="text-yellow-500"></i> The Founder Guild
+                            </h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">
+                                An exclusive community of alumni. Weekly "Pressure Cooker" calls to share blockers, warm intros to angel networks, and a proprietary database of $150k+ in tech credits.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal relative">
+                    <div class="glass-card p-12 rounded-[4rem] text-center">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Portfolio Raised</h5>
+                                <div class="text-3xl font-black text-white">$14M+</div>
+                            </div>
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Mentor Network</h5>
+                                <div class="text-3xl font-black text-white">50+</div>
+                            </div>
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Partner Funds</h5>
+                                <div class="text-3xl font-black text-white">12</div>
+                            </div>
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">MVP Deployed</h5>
+                                <div class="text-3xl font-black text-white">120+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hubs Section -->
+    <section id="hubs" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="reveal mb-16 text-center">
+                <h2 class="text-4xl font-black mb-4">India's <span class="text-green-500">Growth</span> Hubs</h2>
+                <p class="text-gray-400">Intensity is best in person. Our hubs are located in the heart of the ecosystem.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="reveal glass-card p-12 rounded-3xl group cursor-default">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-3xl font-black group-hover:text-green-400 transition-colors">Bengaluru</h3>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-2">The SaaS & Deep Tech Hub</p>
+                        </div>
+                        <i data-lucide="map-pin" class="text-green-500"></i>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed">Highest density of early-stage VCs, startup operators, and first-time founders in India. Our BLR hub focuses on B2B scalability and product engineering.</p>
+                </div>
+                <div class="reveal glass-card p-12 rounded-3xl group cursor-default">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-3xl font-black group-hover:text-blue-400 transition-colors">Delhi-NCR</h3>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-2">The Consumer & Fintech Hub</p>
+                        </div>
+                        <i data-lucide="map-pin" class="text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed">A massive base of corporate talent and consulting professionals. Our NCR hub specializes in D2C experiments, Fintech GTM, and social enterprises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed FAQ Section -->
+    <section class="py-32">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-black mb-16 text-center reveal">Frequently Asked <span class="text-purple-500">Questions</span></h2>
+            <div class="space-y-6">
+                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-white">Do I need to leave my job?</h4>
+                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
+                        No. The program is designed for the "Pre-Commitment" stage. It is a high-intensity hybrid model (evenings/weekends) meant to help you validate your idea so you can quit with confidence by Week 12.
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-white">What is the "Founder Guild"?</h4>
+                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
+                        The Guild is our lifelong alumni network. It provides direct access to warm intros with investors, monthly expert AMAs, and shared services (Legal, HR, Tech) at founder-friendly rates.
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-white">How do you select applicants?</h4>
+                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
+                        Resumes matter less than "Proof of Work." We look for builders who have hacked together side projects, consultants with deep domain insights, or operators who have scaled products before.
+                    </div>
+                </div>
+                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-bold text-white">Is there an equity stake?</h4>
+                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
+                        We offer two tracks. The Execution Sprint is a fee-based track (zero equity). The Accelerator Track is for high-traction graduates where we invest capital for a small equity stake.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="py-40 relative">
+        <div class="absolute inset-0 bg-green-500/5 -z-10"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="text-5xl md:text-7xl font-black mb-10 leading-none">The clock is ticking on <br><span class="gradient-text">your ambition.</span></h2>
+            <p class="text-xl text-gray-400 mb-12">Stop over-thinking and start over-executing. Join the elite 1% of builders in India.</p>
+            <button onclick="toggleWaitlist()" class="px-12 py-6 bg-green-500 text-black font-black rounded-3xl hover:bg-white transition-all text-2xl shadow-[0_0_50px_rgba(74,222,128,0.3)]">
+                Request Admission
+            </button>
+            <div class="mt-8 text-xs font-bold text-gray-500 uppercase tracking-widest">Cohort 04 Applications Close in 12 Days.</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center font-black text-black">S</div>
+                    <span class="text-xl font-black uppercase tracking-tighter">Startup School</span>
+                </div>
+                <p class="text-gray-500 text-sm max-w-xs leading-relaxed">The Alternate B-School for Builders. Replace the MBA with the MVP. Scaling across India's Tier-1 tech hubs.</p>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Explore</h5>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-green-400 transition-colors">Curriculum</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors">The Guild</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors">Campus Cells</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors">Investor Portal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Connect</h5>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-green-400 transition-colors">LinkedIn</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors">Twitter (X)</a></li>
+                    <li><a href="#" class="hover:text-green-400 transition-colors">Email Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-20 pt-10 border-t border-white/5 text-[10px] text-gray-600 uppercase tracking-widest font-bold flex justify-between">
+            <span>&copy; 2024 The Startup School India</span>
+            <div class="flex gap-6">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REGISTRATION MODAL -->
+    <div id="waitlist-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-2xl flex items-center justify-center p-6">
+        <div class="max-w-xl w-full glass-card p-12 rounded-[3.5rem] relative">
+            <button onclick="toggleWaitlist()" class="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="form-view">
+                <h3 class="text-4xl font-black mb-2">Join the <span class="text-green-500">Sprint.</span></h3>
+                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Applications for Cohort 04 in Bengaluru & Delhi-NCR are being screened daily. We filter for obsession, not just pedigree.</p>
+                <form onsubmit="handleWaitlist(event)" class="space-y-5">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Name</label>
+                            <input type="text" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">LinkedIn URL</label>
+                            <input type="url" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all">
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Email Address</label>
+                        <input type="email" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Current Role</label>
+                            <select class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all appearance-none cursor-pointer">
+                                <option>Tech / Product</option>
+                                <option>Ops / Consulting</option>
+                                <option>Student (Final Year)</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Preferred Hub</label>
+                            <select class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all appearance-none cursor-pointer">
+                                <option>Bengaluru (BLR)</option>
+                                <option>Delhi-NCR (NCR)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="w-full py-5 bg-green-500 text-black font-black rounded-2xl hover:bg-white transition-all text-lg mt-4 shadow-xl">
+                        Submit Admission Request
+                    </button>
+                </form>
+            </div>
+            <div id="success-view" class="hidden text-center py-10">
+                <div class="w-24 h-24 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
+                    <i data-lucide="check-circle" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-3xl font-black mb-4">Transmission Success.</h3>
+                <p class="text-gray-500 leading-relaxed mb-8">Your profile is being reviewed. If there's an execution match, we'll reach out via LinkedIn/Email within 48 hours.</p>
+                <button onclick="toggleWaitlist()" class="text-xs font-bold uppercase tracking-widest text-gray-600 hover:text-white underline underline-offset-8">Close Portal</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Scroll Reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Navbar Logic
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+            } else {
+                nav.classList.remove('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFaq(el) {
+            const content = el.querySelector('.faq-content');
+            const icon = el.querySelector('i');
+            const isHidden = content.classList.contains('hidden');
+            
+            // Close others
+            document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.glass-card i[data-lucide="minus"]').forEach(i => {
+                i.setAttribute('data-lucide', 'plus');
+            });
+
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'minus');
+            } else {
+                content.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'plus');
+            }
+            lucide.createIcons();
+        }
+
+        // Modal Logic
+        function toggleWaitlist() {
+            const modal = document.getElementById('waitlist-modal');
+            modal.classList.toggle('hidden');
+            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
+            
+            // Reset form if opening
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('form-view').classList.remove('hidden');
+                document.getElementById('success-view').classList.add('hidden');
+            }
+        }
+
+        // Handle Form
+        function handleWaitlist(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = 'PROCESSING...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('form-view').classList.add('hidden');
+                document.getElementById('success-view').classList.remove('hidden');
+                lucide.createIcons();
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
