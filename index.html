@@ -50,6 +50,11 @@
 
             window.location.href = `mailto:info@hundredplus.in?subject=${subject}&body=${body}`;
         }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
@@ -87,17 +92,37 @@
     <nav class="fixed w-full z-50 bg-bg-main/90 backdrop-blur-md border-b border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
-                    <span class="text-2xl font-black text-text-primary tracking-tighter">THE <span class="text-accent-blue">STARTUP</span> SCHOOL</span>
+                <!-- Logo: Adjusted for mobile (smaller, one line) -->
+                <div class="flex items-center flex-shrink-0">
+                    <span class="text-lg md:text-2xl font-black text-text-primary tracking-tighter whitespace-nowrap">THE <span class="text-accent-blue">STARTUP</span> SCHOOL</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">About</a>
                     <a href="#programs" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Programs</a>
                     <a href="#manifesto" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Manifesto</a>
+                    <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-gradient-primary hover:opacity-90 text-white px-6 py-2.5 rounded-full font-bold transition shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]">
+                        Connect
+                    </button>
                 </div>
-                <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-gradient-primary hover:opacity-90 text-white px-6 py-2.5 rounded-full font-bold transition shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]">
-                    Apply Now
-                </button>
+
+                <!-- Mobile Menu Button (Hamburger) -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-text-primary hover:text-accent-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-bg-surface border-t border-functional-border absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">About</a>
+                <a href="#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">Programs</a>
+                <a href="#manifesto" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">Manifesto</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-accent-blue hover:text-accent-violet font-bold">Connect</a>
             </div>
         </div>
     </nav>
@@ -332,6 +357,20 @@
                 <span class="text-accent-blue font-bold tracking-widest uppercase text-xs border border-accent-blue/30 px-3 py-1 rounded-full">The Founder’s Manifesto</span>
             </div>
 
+            <!-- Founder Details (Moved to Top) -->
+            <div class="mb-10 flex flex-col md:flex-row items-start md:items-center justify-start gap-6">
+                <div class="w-20 h-20 rounded-full bg-gradient-primary p-1 flex-shrink-0">
+                    <img src="gaurav.jpg" alt="Gaurav Bansal" class="w-full h-full rounded-full object-cover" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Gaurav+Bansal&background=0D8ABC&color=fff';">
+                </div>
+                <div class="text-left">
+                    <h4 class="text-2xl font-bold text-white">Gaurav Bansal</h4>
+                    <a href="https://linkedin.com" target="_blank" class="text-accent-blue hover:text-white transition inline-flex items-center gap-2 mt-1">
+                        <i class="fab fa-linkedin text-xl"></i> 
+                        <span>Connect on LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+
             <!-- Reverted to Justified, Left Border Style -->
             <div class="manifesto-font text-lg md:text-xl text-text-secondary leading-relaxed space-y-6 text-justify border-l-4 border-accent-blue pl-6 md:pl-10">
                 <!-- Hindi Quote -->
@@ -367,22 +406,6 @@
                 <p class="font-bold text-accent-blue italic text-xl mt-6 block">
                     “I lost my startup so that you don’t have to lose yours. My failure was a lesson; my mission is your survival.”
                 </p>
-            </div>
-
-            <!-- Founder Details -->
-            <div class="mt-12 flex flex-col md:flex-row items-center justify-start gap-6 border-t border-functional-border pt-8">
-                <div class="w-20 h-20 rounded-full bg-gradient-primary p-1">
-                    <div class="w-full h-full rounded-full bg-bg-surface flex items-center justify-center overflow-hidden">
-                         <i class="fas fa-user text-3xl text-text-secondary"></i>
-                    </div>
-                </div>
-                <div class="text-center md:text-left">
-                    <h4 class="text-2xl font-bold text-white">Gaurav Bansal</h4>
-                    <a href="https://linkedin.com" target="_blank" class="text-accent-blue hover:text-white transition inline-flex items-center gap-2 mt-1">
-                        <i class="fab fa-linkedin text-xl"></i> 
-                        <span>Connect on LinkedIn</span>
-                    </a>
-                </div>
             </div>
 
         </div>
@@ -460,7 +483,7 @@
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-functional-border text-center text-sm">
-                <p>&copy; 2024 The Startup School. All rights reserved.</p>
+                <p>&copy; 2026 The Startup School. All rights reserved.</p>
                 <p class="mt-2 italic">"My mission is your survival."</p>
             </div>
         </div>
