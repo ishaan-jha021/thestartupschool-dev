@@ -1,683 +1,470 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Startup School | Replace Theory with Execution</title>
+    <title>The Startup School | An Alternate B-School</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: {
+                            main: '#0F172A',      // --bg-main
+                            surface: '#1E293B',   // --bg-surface
+                        },
+                        text: {
+                            primary: '#F8FAFC',   // --text-primary
+                            secondary: '#94A3B8', // --text-secondary
+                        },
+                        accent: {
+                            blue: '#3B82F6',      // --accent-blue
+                            violet: '#8B5CF6',    // --accent-violet
+                        },
+                        functional: {
+                            success: '#10B981',   // --color-success
+                            border: '#334155',    // --border-color
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+                    }
+                }
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const city = document.getElementById('form-city').value;
+            const email = document.getElementById('form-email').value;
+            const phone = document.getElementById('form-contact').value;
+
+            const subject = "Inquiry for The Startup School";
+            const body = `Name: ${name}%0D%0ACity: ${city}%0D%0AEmail: ${email}%0D%0AContact Number: ${phone}`;
+
+            window.location.href = `mailto:info@hundredplus.in?subject=${subject}&body=${body}`;
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand-green: #4ade80;
-            --brand-blue: #3b82f6;
-            --brand-purple: #a855f7;
-            --bg-deep: #020202;
-        }
-
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-deep);
-            color: #ffffff;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        .mono { font-family: 'JetBrains Mono', monospace; }
-
+        .manifesto-font {
+            font-family: 'Merriweather', serif;
+        }
         .gradient-text {
-            background: linear-gradient(135deg, var(--brand-green), var(--brand-blue), var(--brand-purple));
+            background: linear-gradient(to right, #3B82F6, #8B5CF6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
+        .bg-pattern {
+            background-color: #0F172A;
+            background-image: radial-gradient(#334155 1px, transparent 1px), radial-gradient(#334155 1px, #0F172A 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            opacity: 0.3;
+        }
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(30, 41, 59, 0.6);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(74, 222, 128, 0.4);
-            transform: translateY(-10px);
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-mesh {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(74, 222, 128, 0.05) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0, transparent 50%),
-                radial-gradient(at 50% 100%, rgba(168, 85, 247, 0.05) 0, transparent 50%);
-            z-index: -1;
-        }
-
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--brand-green);
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #444; }
-
-        .curriculum-grid > div {
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            padding-left: 2rem;
-            position: relative;
-        }
-        .curriculum-grid > div::before {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 0;
-            width: 9px;
-            height: 9px;
-            background: var(--brand-green);
-            border-radius: 50%;
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #334155;
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-bg-main text-text-primary antialiased selection:bg-accent-blue selection:text-white">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center font-black text-black text-xl shadow-[0_0_20px_rgba(255,255,255,0.2)]">S</div>
-                <div class="flex flex-col">
-                    <span class="text-sm font-black tracking-widest uppercase leading-none">The Startup</span>
-                    <span class="text-xs font-bold text-green-500 uppercase tracking-tighter">School</span>
+    <nav class="fixed w-full z-50 bg-bg-main/90 backdrop-blur-md border-b border-functional-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-black text-text-primary tracking-tighter">THE <span class="text-accent-blue">STARTUP</span> SCHOOL</span>
                 </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">About</a>
+                    <a href="#programs" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Programs</a>
+                    <a href="#manifesto" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Manifesto</a>
+                </div>
+                <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-gradient-primary hover:opacity-90 text-white px-6 py-2.5 rounded-full font-bold transition shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]">
+                    Apply Now
+                </button>
             </div>
-            <div class="hidden lg:flex items-center gap-10">
-                <a href="#philosophy" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Philosophy</a>
-                <a href="#curriculum" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Curriculum</a>
-                <a href="#guild" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">The Guild</a>
-                <a href="#comparison" class="nav-link text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">MBA vs Us</a>
-                <button onclick="toggleWaitlist()" class="px-6 py-2.5 bg-green-500 text-black rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all">Apply Now</button>
-            </div>
-            <button class="lg:hidden text-white" id="menu-toggle">
-                <i data-lucide="menu"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="hero-mesh"></div>
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center z-10">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-bold tracking-widest uppercase mb-8">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Admissions Closing: Cohort 04
+    <!-- Hero Section: The Investment Question -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-pattern z-0"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-text-primary tracking-tight mb-12 leading-tight">
+                Which <span class="gradient-text">Investment</span> Makes<br> More Sense To You?
+            </h1>
+
+            <!-- Comparison Cards -->
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mb-12">
+                <!-- Option A -->
+                <div class="glass-card rounded-2xl p-8 border border-functional-border text-left hover:border-red-400/50 transition duration-300">
+                    <h3 class="text-text-secondary font-bold uppercase text-xs tracking-widest mb-4">Option A: Traditional Path</h3>
+                    <ul class="space-y-4 text-text-secondary">
+                        <li class="flex items-start">
+                            <i class="fas fa-clock mt-1 mr-3 text-red-400"></i>
+                            <span>A 2-year traditional B-School education</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-rupee-sign mt-1 mr-3 text-red-400"></i>
+                            <span>Investing <strong class="text-white">₹10–40 lakhs</strong> in a traditional B-School degree</span>
+                        </li>
+                    </ul>
                 </div>
-                <h1 class="text-6xl lg:text-8xl font-black leading-[1.05] mb-8">
-                    Replacing Theory <br>with <span class="gradient-text">Execution.</span>
-                </h1>
-                <p class="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
-                    Stop watching founder interviews and start conducting your own. A 12-week high-intensity sprint for professionals ready to bridge the "Execution Readiness Gap."
+
+                <!-- Option B -->
+                <div class="glass-card rounded-2xl p-8 border border-accent-blue text-left relative overflow-hidden bg-bg-surface/80">
+                     <div class="absolute top-0 right-0 bg-accent-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg">THE BUILDER'S PATH</div>
+                     <h3 class="text-accent-blue font-bold uppercase text-xs tracking-widest mb-4">Option B: The Startup School</h3>
+                    <ul class="space-y-4 text-text-primary">
+                        <li class="flex items-start">
+                            <i class="fas fa-rocket mt-1 mr-3 text-functional-success"></i>
+                            <span>Investing 1–2 years building your Startup</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-coins mt-1 mr-3 text-functional-success"></i>
+                            <span>Investing that capital in <strong class="text-white">building your startup</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <p class="text-xl md:text-2xl text-text-primary font-medium mb-4">
+                    If your answer is <span class="text-accent-blue">building your startup</span>:
                 </p>
-                <div class="flex flex-col sm:flex-row gap-5">
-                    <button onclick="toggleWaitlist()" class="px-10 py-5 bg-white text-black font-black rounded-2xl hover:bg-green-500 transition-all flex items-center justify-center gap-3 text-lg">
-                        Apply to Cohort <i data-lucide="arrow-right"></i>
-                    </button>
-                    <a href="#comparison" class="px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all flex items-center justify-center gap-3 text-lg">
-                        See the ROI
+                <p class="text-lg md:text-xl text-text-secondary italic">
+                    "The B-school you wish existed — is being built."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Is This For? -->
+    <section class="py-20 bg-bg-main border-t border-functional-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-text-primary">For All Those Aspiring Souls Who Are:</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Persona 1 -->
+                <div class="bg-bg-surface border border-functional-border p-8 rounded-xl hover:border-accent-blue transition group cursor-pointer h-full">
+                    <div class="w-12 h-12 bg-bg-main text-accent-blue rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-blue group-hover:text-white transition">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
+                        Passionate about starting something big, but still searching for the right idea.
+                    </p>
+                </div>
+                <!-- Persona 2 -->
+                <div class="bg-bg-surface border border-functional-border p-8 rounded-xl hover:border-accent-violet transition group cursor-pointer h-full">
+                    <div class="w-12 h-12 bg-bg-main text-accent-violet rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-violet group-hover:text-white transition">
+                        <i class="fas fa-chair"></i>
+                    </div>
+                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
+                        Sitting on a solid startup idea, yet unsure how to take the first real step.
+                    </p>
+                </div>
+                <!-- Persona 3 -->
+                <div class="bg-bg-surface border border-functional-border p-8 rounded-xl hover:border-accent-blue transition group cursor-pointer h-full">
+                    <div class="w-12 h-12 bg-bg-main text-accent-blue rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-blue group-hover:text-white transition">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
+                        Already grinding on an idea, but stuck — wondering how to scale, survive, and win.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-bg-surface/50"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="text-accent-violet font-bold tracking-widest uppercase text-sm mb-4 block">Introducing</span>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                "THE <span class="gradient-text">STARTUP</span> SCHOOL"
+            </h2>
+            <p class="text-2xl text-text-primary font-light mb-12">
+                An alternate B-School for all Aspiring Founders.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 flex-wrap">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Highly Affordable</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Time Saving</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">Built for Billion-Dollar Thinking</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 4 Deadly Gaps -->
+    <section class="py-20 bg-bg-main">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text-primary">We Close The 4 Deadly Gaps</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Gap 1 -->
+                <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-blue transition duration-300 text-center">
+                    <div class="text-3xl text-accent-blue mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-text-primary">Learning</h3>
+                    <p class="text-text-secondary text-sm">Experiential and Live.</p>
+                </div>
+                <!-- Gap 2 -->
+                <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-violet transition duration-300 text-center">
+                    <div class="text-3xl text-accent-violet mb-4"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-text-primary">Access</h3>
+                    <p class="text-text-secondary text-sm">To world-class tools, network, and Intel.</p>
+                </div>
+                <!-- Gap 3 -->
+                <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-blue transition duration-300 text-center">
+                    <div class="text-3xl text-accent-blue mb-4"><i class="fas fa-user-astronaut"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-text-primary">Mentoring</h3>
+                    <p class="text-text-secondary text-sm">By Titans.</p>
+                </div>
+                <!-- Gap 4 -->
+                <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-violet transition duration-300 text-center">
+                    <div class="text-3xl text-accent-violet mb-4"><i class="fas fa-users"></i></div>
+                    <h3 class="text-xl font-bold mb-2 text-text-primary">Community</h3>
+                    <p class="text-text-secondary text-sm">Of believers and co-builders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-24 bg-bg-surface border-y border-functional-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-text-primary">Programs Launching Soon</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Program 1 -->
+                <div class="bg-bg-main rounded-2xl p-8 border border-functional-border hover:border-accent-blue transition flex flex-col justify-between">
+                    <div>
+                        <div class="text-accent-blue font-bold text-sm uppercase tracking-wider mb-2">The Spark</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">3-Day Ignition Sprint</h3>
+                        <div class="space-y-2 mb-8">
+                             <div class="flex items-center text-text-secondary text-sm">
+                                <i class="fas fa-map-marker-alt w-6 text-accent-blue"></i> Mumbai
+                            </div>
+                            <div class="flex items-center text-text-secondary text-sm">
+                                <i class="fas fa-map-marker-alt w-6 text-accent-blue"></i> Delhi / NCR
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="document.getElementById('contact').scrollIntoView()" class="w-full border border-functional-border text-text-primary font-bold py-3 rounded-lg hover:bg-bg-surface transition">Get Details</button>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-gradient-primary rounded-2xl p-1 relative overflow-hidden">
+                    <div class="bg-bg-main h-full rounded-xl p-8 flex flex-col justify-between relative z-10">
+                        <div>
+                            <div class="text-accent-violet font-bold text-sm uppercase tracking-wider mb-2">The Transformation</div>
+                            <h3 class="text-2xl font-bold text-white mb-4">30-Days Deep-Dive Immersion Cohorts</h3>
+                             <div class="space-y-2 mb-8">
+                                <div class="flex items-center text-text-secondary text-sm">
+                                    <i class="fas fa-map-marker-alt w-6 text-accent-violet"></i> Mumbai
+                                </div>
+                                <div class="flex items-center text-text-secondary text-sm">
+                                    <i class="fas fa-map-marker-alt w-6 text-accent-violet"></i> Delhi / NCR
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="document.getElementById('contact').scrollIntoView()" class="w-full bg-accent-blue text-white font-bold py-3 rounded-lg hover:bg-accent-violet transition">Apply for Cohort</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                 <p class="text-text-primary font-medium mb-4">For passionate souls:</p>
+                 <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-accent-blue text-white px-8 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:bg-accent-violet transition transform hover:-translate-y-1">
+                    Drop your contact here <i class="fas fa-arrow-down ml-1"></i>
+                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section id="manifesto" class="py-24 bg-bg-main relative overflow-hidden">
+        <!-- Decorative bg elements -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-accent-violet/10 rounded-full blur-3xl opacity-30"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-accent-blue/10 rounded-full blur-3xl opacity-30"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-accent-blue font-bold tracking-widest uppercase text-xs border border-accent-blue/30 px-3 py-1 rounded-full">The Founder’s Manifesto</span>
+            </div>
+
+            <!-- Reverted to Justified, Left Border Style -->
+            <div class="manifesto-font text-lg md:text-xl text-text-secondary leading-relaxed space-y-6 text-justify border-l-4 border-accent-blue pl-6 md:pl-10">
+                <!-- Hindi Quote -->
+                <h3 class="text-2xl md:text-3xl font-bold text-white leading-relaxed mb-6 not-italic">
+                    “दिल में हो आग तो जलती रहनी चाहिए,<br> 
+                    तेरा हो चाहे मेरा, <span class="text-accent-violet">सपना ज़िंदा रहना चाहिए!</span>”
+                </h3>
+
+                <p>
+                    Startups in India aren't built in garages; they are built at <strong class="text-text-primary">kitchen tables</strong> — amid family debates and financial anxiety.
+                </p>
+                <p>
+                    In a country like <strong class="text-text-primary">BHARAT</strong>, the “Opportunity Cost” isn't just a line on a spreadsheet — it is a weight on a founder’s soul. For the middle-class dreamer, choosing a startup over a steady paycheck is an act of war against social security.
+                </p>
+                <p>
+                    A startup’s greatest enemy isn’t a competitor — it’s the <strong class="text-text-primary">“Initial Days Vacuum.”</strong> We talk about “funding”, but we forget about “foundation”.
+                </p>
+                <p>
+                    Everyone has the <em class="text-white">Keeda</em> (the itch) and the <em class="text-white">Himmat</em> (the courage), but courage without a compass is just a slow way to get lost.
+                </p>
+                <p>
+                    We treat early-stage startups like athletes, but we should treat them like infants. If you don’t hold the hand that is trying to build, that hand will eventually reach for a corporate cubicle just to survive.
+                </p>
+                <p>
+                    I believe tactical, hands-on support in the first 100 days is more valuable than a seed check in the first 300. We need to stop letting “outliers” die because they didn’t have a map.
+                </p>
+                <p>
+                    If we provide the right scaffolding to the aspiring founder, we won’t just see more startups — we will see an era of <strong class="text-white">unstoppable builders.</strong>
+                </p>
+                <p>
+                    It doesn’t matter whose hand holds the torch, as long as the darkness is defeated. I am not here to just invest; I am here to ensure the fire doesn’t go out before the sun rises.
+                </p>
+                <p class="font-bold text-accent-blue italic text-xl mt-6 block">
+                    “I lost my startup so that you don’t have to lose yours. My failure was a lesson; my mission is your survival.”
+                </p>
+            </div>
+
+            <!-- Founder Details -->
+            <div class="mt-12 flex flex-col md:flex-row items-center justify-start gap-6 border-t border-functional-border pt-8">
+                <div class="w-20 h-20 rounded-full bg-gradient-primary p-1">
+                    <div class="w-full h-full rounded-full bg-bg-surface flex items-center justify-center overflow-hidden">
+                         <i class="fas fa-user text-3xl text-text-secondary"></i>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="text-2xl font-bold text-white">Gaurav Bansal</h4>
+                    <a href="https://linkedin.com" target="_blank" class="text-accent-blue hover:text-white transition inline-flex items-center gap-2 mt-1">
+                        <i class="fab fa-linkedin text-xl"></i> 
+                        <span>Connect on LinkedIn</span>
                     </a>
                 </div>
-                <div class="mt-16 flex flex-wrap items-center gap-6 opacity-40 grayscale">
-                    <span class="text-xs font-black uppercase tracking-[0.2em] text-white">Backed by operators from:</span>
-                    <div class="flex gap-8 items-center">
-                        <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" class="h-5" alt="Google">
-                        <img src="https://img.icons8.com/ios-filled/50/ffffff/amazon-web-services.png" class="h-7" alt="AWS">
-                        <img src="https://img.icons8.com/ios-filled/50/ffffff/stripe.png" class="h-5" alt="Stripe">
-                    </div>
-                </div>
             </div>
-            <div class="relative hidden lg:block">
-                <div class="glass-card p-10 rounded-[3rem] border-white/10 relative z-10 overflow-hidden">
-                    <div class="absolute top-0 right-0 p-8 opacity-10">
-                        <i data-lucide="terminal" class="w-32 h-32"></i>
-                    </div>
-                    <div class="space-y-8 mono text-xs">
-                        <div class="p-4 bg-white/5 rounded-xl border border-white/5">
-                            <span class="text-green-500 font-bold">$ init founder_sprint</span>
-                            <div class="mt-2 text-gray-500 italic">// Week 01: Problem Deconstruction</div>
-                            <div class="text-white mt-1">-> 42 User Interviews scheduled.</div>
-                            <div class="text-white">-> 12 Pain points identified.</div>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-xl border border-white/5">
-                            <span class="text-blue-500 font-bold">$ deploy mvp_v1</span>
-                            <div class="mt-2 text-gray-500 italic">// Week 06: Rapid Prototyping</div>
-                            <div class="text-white mt-1">-> 128 Waitlist signups.</div>
-                            <div class="text-white">-> 85% Value confirmation.</div>
-                        </div>
-                        <div class="pt-4 flex justify-between items-center">
-                            <div class="flex flex-col">
-                                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Readiness Score</span>
-                                <span class="text-2xl font-black text-white">94/100</span>
-                            </div>
-                            <div class="w-24 h-24 rounded-full border-8 border-green-500/20 flex items-center justify-center relative">
-                                <div class="absolute inset-0 border-t-8 border-green-500 rounded-full animate-spin"></div>
-                                <span class="text-[10px] font-bold">ACTIVE</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full"></div>
-            </div>
+
         </div>
-    </header>
+    </section>
 
-    <!-- Philosophy Section (The Deep Problem) -->
-    <section id="philosophy" class="py-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-24 items-center mb-32">
-                <div class="reveal">
-                    <h2 class="text-xs font-black uppercase tracking-[0.4em] text-green-500 mb-6">The Founding Thesis</h2>
-                    <h3 class="text-5xl font-black mb-8 leading-tight">India has an Idea problem, <br>not an <span class="text-red-500">Execution</span> problem.</h3>
-                    <p class="text-xl text-gray-400 leading-relaxed mb-10">
-                        Traditional B-schools teach managers how to run a corporation. They do not condition founders for the "0-to-1" chaos. 90% of early-stage failures are preventable—they are the result of poor decision-making frameworks and slow iteration loops.
-                    </p>
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                                <i data-lucide="trending-down" class="text-red-400 w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white">Theoretical Overload</h4>
-                                <p class="text-sm text-gray-500">Learning "what" a startup is, instead of "how" to operate one.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                                <i data-lucide="shield-off" class="text-blue-400 w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white">Low-Stakes Mentorship</h4>
-                                <p class="text-sm text-gray-500">Motivational fluff instead of brutally honest, consequence-linked feedback.</p>
-                            </div>
-                        </div>
+    <!-- Media Section -->
+    <section class="py-20 bg-black text-text-primary text-center border-t border-functional-border">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8 text-text-secondary tracking-widest uppercase text-sm">Videos and Images by the Founder</h2>
+            <div class="aspect-video bg-bg-surface rounded-xl flex items-center justify-center border border-functional-border relative group cursor-pointer hover:bg-bg-surface/80 transition shadow-[0_0_50px_rgba(59,130,246,0.1)]">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition duration-300 shadow-[0_0_20px_rgba(139,92,246,0.5)]">
+                        <i class="fas fa-play text-2xl ml-1 text-white"></i>
                     </div>
-                </div>
-                <div class="reveal grid grid-cols-2 gap-4">
-                    <div class="glass-card p-8 rounded-3xl mt-12">
-                        <div class="text-4xl font-black mb-2">35k+</div>
-                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">MBAs Produced Yearly</div>
-                    </div>
-                    <div class="glass-card p-8 rounded-3xl">
-                        <div class="text-4xl font-black mb-2 text-green-500">0.1%</div>
-                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">Are Startup-Ready</div>
-                    </div>
-                    <div class="glass-card p-8 rounded-3xl">
-                        <div class="text-4xl font-black mb-2 text-blue-500">12w</div>
-                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">Conditioning Cycle</div>
-                    </div>
-                    <div class="glass-card p-8 rounded-3xl -mt-12">
-                        <div class="text-4xl font-black mb-2 text-purple-500">100%</div>
-                        <div class="text-xs text-gray-500 font-bold uppercase tracking-widest">Operator-Led</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Who it's for -->
-            <div class="reveal grid md:grid-cols-2 gap-8">
-                <div class="bg-green-500/5 border border-green-500/10 p-12 rounded-[3rem]">
-                    <h4 class="text-2xl font-black mb-6 text-green-400">Who This Is For</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> High-potential professionals (Tech, Product, Ops)</li>
-                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> Builders with "Proof of Work" (not just resumes)</li>
-                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> Founders in the 0-to-1 pre-seed chaos</li>
-                        <li class="flex gap-3"><i data-lucide="check" class="text-green-400 shrink-0"></i> Obsessive problem-solvers tired of theory</li>
-                    </ul>
-                </div>
-                <div class="bg-red-500/5 border border-red-500/10 p-12 rounded-[3rem]">
-                    <h4 class="text-2xl font-black mb-6 text-red-400">Who This Is NOT For</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> Those seeking a decorative certificate</li>
-                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> Passive observers or "wantrepreneurs"</li>
-                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> People uncomfortable with radical honesty</li>
-                        <li class="flex gap-3"><i data-lucide="x" class="text-red-400 shrink-0"></i> Anyone looking for "get rich quick" shortcuts</li>
-                    </ul>
+                    <p class="text-text-secondary">Founder's Video Placeholder</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Deep Curriculum Breakdown -->
-    <section id="curriculum" class="py-32 bg-white/[0.01]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-5xl font-black mb-6">The 6-Module <span class="text-green-500">Blueprint</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Twelve weeks of relentless building. Every week is a milestone, not a lecture.</p>
-            </div>
+    <!-- Contact / Lead Gen -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-bg-main to-black border-t border-functional-border">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-2xl shadow-2xl p-8 md:p-12 border border-functional-border relative overflow-hidden">
+                 <!-- subtle glow behind form -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-accent-violet/20 rounded-full blur-[80px]"></div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 curriculum-grid">
-                <div class="reveal" style="transition-delay: 100ms;">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 01</span>
-                    <h4 class="text-xl font-bold mt-2 mb-4">Problem Deconstruction</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Kill your darling idea. Learn to separate "Cool Tech" from "Painful Market Gaps" through 50+ customer discovery calls.</p>
+                <div class="text-center mb-10 relative z-10">
+                    <h2 class="text-3xl font-bold text-text-primary mb-2">To Know More About Our Programs</h2>
+                    <p class="text-text-secondary">Drop your contact details below.</p>
                 </div>
-                <div class="reveal" style="transition-delay: 200ms;">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 02</span>
-                    <h4 class="text-xl font-bold mt-2 mb-4">The MVP Philosophy</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Master the "Value per Click" metric. Build and deploy a functional prototype using no-code or AI stacks within 14 days.</p>
-                </div>
-                <div class="reveal" style="transition-delay: 300ms;">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 03</span>
-                    <h4 class="text-xl font-bold mt-2 mb-4">GTM Micro-Experiments</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Stop guessing where users are. Run low-cost growth experiments across LinkedIn, Meta, and cold-outreach channels.</p>
-                </div>
-                <div class="reveal" style="transition-delay: 400ms;">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 04</span>
-                    <h4 class="text-xl font-bold mt-2 mb-4">Unit Economics & Ops</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Understanding the math behind the madness. CAC, LTV, and building a scalable operating system for your team.</p>
-                </div>
-                <div class="reveal" style="transition-delay: 500ms;">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 05</span>
-                    <h4 class="text-xl font-bold mt-2 mb-4">Narrative & Pitching</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">Moving from "What we do" to "Why we win." Crafting a story that creates FOMO among early-stage VCs.</p>
-                </div>
-                <div class="reveal" style="transition-delay: 600ms;">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Module 06</span>
-                    <h4 class="text-xl font-bold mt-2 mb-4">The Demo Sprint</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed">The Final Stress Test. Pitching to a panel of operator-mentors and angel investors in a high-pressure simulation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Traditional MBA vs Startup School (Investor/ROI Centric) -->
-    <section id="comparison" class="py-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-black mb-20 text-center reveal">The Opportunity <span class="text-blue-500">Cost</span></h2>
-            
-            <div class="reveal overflow-x-auto">
-                <table class="w-full text-left glass-card rounded-[2.5rem] border-separate border-spacing-0 overflow-hidden">
-                    <thead>
-                        <tr class="bg-white/5">
-                            <th class="p-8 text-xs font-black uppercase tracking-widest text-gray-500">Feature</th>
-                            <th class="p-8 text-xs font-black uppercase tracking-widest text-white">Traditional MBA</th>
-                            <th class="p-8 text-xs font-black uppercase tracking-widest text-green-400">The Startup School</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm text-gray-400">
-                        <tr class="border-b border-white/5">
-                            <td class="p-8 font-bold text-white">Duration</td>
-                            <td class="p-8">24 Months (Full-time)</td>
-                            <td class="p-8 text-green-400 font-bold">12 Weeks (Hybrid Sprint)</td>
-                        </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="p-8 font-bold text-white">Cost (Avg)</td>
-                            <td class="p-8">₹25L – ₹40L</td>
-                            <td class="p-8 text-green-400 font-bold">₹1.2L – ₹1.8L</td>
-                        </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="p-8 font-bold text-white">Primary Focus</td>
-                            <td class="p-8">General Management Theory</td>
-                            <td class="p-8 text-green-400 font-bold">0-to-1 Operational Execution</td>
-                        </tr>
-                        <tr class="border-b border-white/5">
-                            <td class="p-8 font-bold text-white">Network</td>
-                            <td class="p-8">Corporate Peers & Academics</td>
-                            <td class="p-8 text-green-400 font-bold">VCs, Founders & Operators</td>
-                        </tr>
-                        <tr>
-                            <td class="p-8 font-bold text-white">Outcome</td>
-                            <td class="p-8">Salary / Job Placement</td>
-                            <td class="p-8 text-green-400 font-bold">Market Traction / Fundraising</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- The Founder Guild & Campus Cells -->
-    <section id="guild" class="py-32 relative overflow-hidden bg-black">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div class="reveal">
-                    <h2 class="text-5xl font-black mb-8 leading-tight">Beyond the Program: <br><span class="gradient-text">The Ecosystem.</span></h2>
-                    <p class="text-xl text-gray-400 mb-10 leading-relaxed">
-                        The Startup School is not a 12-week course—it’s a lifetime moat. Our ecosystem is built on the philosophy of "Builders helping Builders."
-                    </p>
+                <form class="space-y-6 relative z-10" onsubmit="handleFormSubmit(event)">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-text-secondary mb-1">Name</label>
+                            <input type="text" id="form-name" placeholder="Your Full Name" class="w-full px-4 py-3 rounded-lg bg-bg-main border border-functional-border text-text-primary placeholder-gray-600 focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-secondary mb-1">City</label>
+                            <input type="text" id="form-city" placeholder="e.g. Mumbai, Delhi" class="w-full px-4 py-3 rounded-lg bg-bg-main border border-functional-border text-text-primary placeholder-gray-600 focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-secondary mb-1">Email Address</label>
+                        <input type="email" id="form-email" placeholder="you@example.com" class="w-full px-4 py-3 rounded-lg bg-bg-main border border-functional-border text-text-primary placeholder-gray-600 focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-text-secondary mb-1">Contact Number</label>
+                        <input type="tel" id="form-contact" placeholder="+91 XXXXX XXXXX" class="w-full px-4 py-3 rounded-lg bg-bg-main border border-functional-border text-text-primary placeholder-gray-600 focus:ring-2 focus:ring-accent-blue focus:border-transparent outline-none transition" required>
+                    </div>
                     
-                    <div class="space-y-10">
-                        <div class="reveal">
-                            <h4 class="text-xl font-bold mb-4 flex items-center gap-3">
-                                <i data-lucide="building-2" class="text-blue-500"></i> Campus Founder Cells
-                            </h4>
-                            <p class="text-gray-500 text-sm leading-relaxed">
-                                Our collegiate B2B layer. We partner with Tier-1 engineering colleges to identify high-potential builders in their final years, providing a structured roadmap to channel their energy into ventures.
-                            </p>
-                        </div>
-                        <div class="reveal">
-                            <h4 class="text-xl font-bold mb-4 flex items-center gap-3">
-                                <i data-lucide="flame" class="text-yellow-500"></i> The Founder Guild
-                            </h4>
-                            <p class="text-gray-500 text-sm leading-relaxed">
-                                An exclusive community of alumni. Weekly "Pressure Cooker" calls to share blockers, warm intros to angel networks, and a proprietary database of $150k+ in tech credits.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal relative">
-                    <div class="glass-card p-12 rounded-[4rem] text-center">
-                        <div class="grid grid-cols-2 gap-8">
-                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Portfolio Raised</h5>
-                                <div class="text-3xl font-black text-white">$14M+</div>
-                            </div>
-                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Mentor Network</h5>
-                                <div class="text-3xl font-black text-white">50+</div>
-                            </div>
-                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Partner Funds</h5>
-                                <div class="text-3xl font-black text-white">12</div>
-                            </div>
-                            <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                                <h5 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">MVP Deployed</h5>
-                                <div class="text-3xl font-black text-white">120+</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="w-full bg-gradient-primary text-white font-bold py-4 rounded-lg hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] transition transform hover:-translate-y-1">
+                        Submit
+                    </button>
+                    <p class="text-xs text-center text-gray-500 mt-4">We respect your privacy. No spam, only fire.</p>
+                </form>
             </div>
-        </div>
-    </section>
-
-    <!-- Hubs Section -->
-    <section id="hubs" class="py-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="reveal mb-16 text-center">
-                <h2 class="text-4xl font-black mb-4">India's <span class="text-green-500">Growth</span> Hubs</h2>
-                <p class="text-gray-400">Intensity is best in person. Our hubs are located in the heart of the ecosystem.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="reveal glass-card p-12 rounded-3xl group cursor-default">
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 class="text-3xl font-black group-hover:text-green-400 transition-colors">Bengaluru</h3>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-2">The SaaS & Deep Tech Hub</p>
-                        </div>
-                        <i data-lucide="map-pin" class="text-green-500"></i>
-                    </div>
-                    <p class="text-gray-400 mb-8 leading-relaxed">Highest density of early-stage VCs, startup operators, and first-time founders in India. Our BLR hub focuses on B2B scalability and product engineering.</p>
-                </div>
-                <div class="reveal glass-card p-12 rounded-3xl group cursor-default">
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 class="text-3xl font-black group-hover:text-blue-400 transition-colors">Delhi-NCR</h3>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest mt-2">The Consumer & Fintech Hub</p>
-                        </div>
-                        <i data-lucide="map-pin" class="text-blue-500"></i>
-                    </div>
-                    <p class="text-gray-400 mb-8 leading-relaxed">A massive base of corporate talent and consulting professionals. Our NCR hub specializes in D2C experiments, Fintech GTM, and social enterprises.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed FAQ Section -->
-    <section class="py-32">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-4xl font-black mb-16 text-center reveal">Frequently Asked <span class="text-purple-500">Questions</span></h2>
-            <div class="space-y-6">
-                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold text-white">Do I need to leave my job?</h4>
-                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
-                        No. The program is designed for the "Pre-Commitment" stage. It is a high-intensity hybrid model (evenings/weekends) meant to help you validate your idea so you can quit with confidence by Week 12.
-                    </div>
-                </div>
-                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold text-white">What is the "Founder Guild"?</h4>
-                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
-                        The Guild is our lifelong alumni network. It provides direct access to warm intros with investors, monthly expert AMAs, and shared services (Legal, HR, Tech) at founder-friendly rates.
-                    </div>
-                </div>
-                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold text-white">How do you select applicants?</h4>
-                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
-                        Resumes matter less than "Proof of Work." We look for builders who have hacked together side projects, consultants with deep domain insights, or operators who have scaled products before.
-                    </div>
-                </div>
-                <div class="reveal glass-card p-8 rounded-2xl cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-bold text-white">Is there an equity stake?</h4>
-                        <i data-lucide="plus" class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                    </div>
-                    <div class="faq-content hidden pt-6 text-sm text-gray-400 leading-relaxed border-t border-white/5 mt-6">
-                        We offer two tracks. The Execution Sprint is a fee-based track (zero equity). The Accelerator Track is for high-traction graduates where we invest capital for a small equity stake.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final Call to Action -->
-    <section class="py-40 relative">
-        <div class="absolute inset-0 bg-green-500/5 -z-10"></div>
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <h2 class="text-5xl md:text-7xl font-black mb-10 leading-none">The clock is ticking on <br><span class="gradient-text">your ambition.</span></h2>
-            <p class="text-xl text-gray-400 mb-12">Stop over-thinking and start over-executing. Join the elite 1% of builders in India.</p>
-            <button onclick="toggleWaitlist()" class="px-12 py-6 bg-green-500 text-black font-black rounded-3xl hover:bg-white transition-all text-2xl shadow-[0_0_50px_rgba(74,222,128,0.3)]">
-                Request Admission
-            </button>
-            <div class="mt-8 text-xs font-bold text-gray-500 uppercase tracking-widest">Cohort 04 Applications Close in 12 Days.</div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-20 border-t border-white/5 bg-black">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
-            <div class="col-span-2">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center font-black text-black">S</div>
-                    <span class="text-xl font-black uppercase tracking-tighter">Startup School</span>
+    <footer class="bg-black text-text-secondary py-12 border-t border-functional-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl font-black text-text-primary tracking-tighter">THE <span class="text-accent-blue">STARTUP</span> SCHOOL</span>
+                    <p class="mt-2 text-sm">Stay tuned for more details …</p>
                 </div>
-                <p class="text-gray-500 text-sm max-w-xs leading-relaxed">The Alternate B-School for Builders. Replace the MBA with the MVP. Scaling across India's Tier-1 tech hubs.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-youtube text-xl"></i></a>
+                </div>
             </div>
-            <div>
-                <h5 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Explore</h5>
-                <ul class="space-y-4 text-sm text-gray-500">
-                    <li><a href="#" class="hover:text-green-400 transition-colors">Curriculum</a></li>
-                    <li><a href="#" class="hover:text-green-400 transition-colors">The Guild</a></li>
-                    <li><a href="#" class="hover:text-green-400 transition-colors">Campus Cells</a></li>
-                    <li><a href="#" class="hover:text-green-400 transition-colors">Investor Portal</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-xs font-bold uppercase tracking-widest text-white mb-6">Connect</h5>
-                <ul class="space-y-4 text-sm text-gray-500">
-                    <li><a href="#" class="hover:text-green-400 transition-colors">LinkedIn</a></li>
-                    <li><a href="#" class="hover:text-green-400 transition-colors">Twitter (X)</a></li>
-                    <li><a href="#" class="hover:text-green-400 transition-colors">Email Support</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 mt-20 pt-10 border-t border-white/5 text-[10px] text-gray-600 uppercase tracking-widest font-bold flex justify-between">
-            <span>&copy; 2024 The Startup School India</span>
-            <div class="flex gap-6">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
+            <div class="mt-8 pt-8 border-t border-functional-border text-center text-sm">
+                <p>&copy; 2024 The Startup School. All rights reserved.</p>
+                <p class="mt-2 italic">"My mission is your survival."</p>
             </div>
         </div>
     </footer>
 
-    <!-- REGISTRATION MODAL -->
-    <div id="waitlist-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-2xl flex items-center justify-center p-6">
-        <div class="max-w-xl w-full glass-card p-12 rounded-[3.5rem] relative">
-            <button onclick="toggleWaitlist()" class="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors">
-                <i data-lucide="x"></i>
-            </button>
-            <div id="form-view">
-                <h3 class="text-4xl font-black mb-2">Join the <span class="text-green-500">Sprint.</span></h3>
-                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Applications for Cohort 04 in Bengaluru & Delhi-NCR are being screened daily. We filter for obsession, not just pedigree.</p>
-                <form onsubmit="handleWaitlist(event)" class="space-y-5">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Name</label>
-                            <input type="text" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">LinkedIn URL</label>
-                            <input type="url" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all">
-                        </div>
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Email Address</label>
-                        <input type="email" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Current Role</label>
-                            <select class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all appearance-none cursor-pointer">
-                                <option>Tech / Product</option>
-                                <option>Ops / Consulting</option>
-                                <option>Student (Final Year)</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Preferred Hub</label>
-                            <select class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:border-green-500 outline-none transition-all appearance-none cursor-pointer">
-                                <option>Bengaluru (BLR)</option>
-                                <option>Delhi-NCR (NCR)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button class="w-full py-5 bg-green-500 text-black font-black rounded-2xl hover:bg-white transition-all text-lg mt-4 shadow-xl">
-                        Submit Admission Request
-                    </button>
-                </form>
-            </div>
-            <div id="success-view" class="hidden text-center py-10">
-                <div class="w-24 h-24 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
-                    <i data-lucide="check-circle" class="w-12 h-12"></i>
-                </div>
-                <h3 class="text-3xl font-black mb-4">Transmission Success.</h3>
-                <p class="text-gray-500 leading-relaxed mb-8">Your profile is being reviewed. If there's an execution match, we'll reach out via LinkedIn/Email within 48 hours.</p>
-                <button onclick="toggleWaitlist()" class="text-xs font-bold uppercase tracking-widest text-gray-600 hover:text-white underline underline-offset-8">Close Portal</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
-
-        // Scroll Reveal
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // Navbar Logic
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
-            } else {
-                nav.classList.remove('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
-            }
-        });
-
-        // FAQ Toggle
-        function toggleFaq(el) {
-            const content = el.querySelector('.faq-content');
-            const icon = el.querySelector('i');
-            const isHidden = content.classList.contains('hidden');
-            
-            // Close others
-            document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
-            document.querySelectorAll('.glass-card i[data-lucide="minus"]').forEach(i => {
-                i.setAttribute('data-lucide', 'plus');
-            });
-
-            if (isHidden) {
-                content.classList.remove('hidden');
-                icon.setAttribute('data-lucide', 'minus');
-            } else {
-                content.classList.add('hidden');
-                icon.setAttribute('data-lucide', 'plus');
-            }
-            lucide.createIcons();
-        }
-
-        // Modal Logic
-        function toggleWaitlist() {
-            const modal = document.getElementById('waitlist-modal');
-            modal.classList.toggle('hidden');
-            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
-            
-            // Reset form if opening
-            if (!modal.classList.contains('hidden')) {
-                document.getElementById('form-view').classList.remove('hidden');
-                document.getElementById('success-view').classList.add('hidden');
-            }
-        }
-
-        // Handle Form
-        function handleWaitlist(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerText = 'PROCESSING...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                document.getElementById('form-view').classList.add('hidden');
-                document.getElementById('success-view').classList.remove('hidden');
-                lucide.createIcons();
-            }, 1500);
-        }
-    </script>
 </body>
 </html>
