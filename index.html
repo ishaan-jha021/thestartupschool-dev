@@ -157,10 +157,15 @@
             </h1>
 
             <!-- Comparison Cards -->
-            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mb-12">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mb-12 mt-8">
                 <!-- Option A -->
-                <div class="glass-card rounded-2xl p-8 border border-functional-border text-left hover:border-red-400/50 transition duration-300">
-                    <h3 class="text-text-secondary font-bold uppercase text-xs tracking-widest mb-4">Option A: Traditional Path</h3>
+                <div class="glass-card rounded-2xl p-8 border border-functional-border text-left hover:border-red-400/50 transition duration-300 relative overflow-hidden">
+                    <!-- Added Badge -->
+                    <div class="absolute top-0 right-0 bg-gray-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">THE JOB SEEKER'S PATH</div>
+                    
+                    <!-- Updated Title -->
+                    <h3 class="text-text-primary font-black uppercase text-2xl tracking-widest mb-6">OPTION A</h3>
+                    
                     <ul class="space-y-4 text-text-secondary">
                         <li class="flex items-start">
                             <i class="fas fa-clock mt-1 mr-3 text-red-400"></i>
@@ -168,7 +173,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-rupee-sign mt-1 mr-3 text-red-400"></i>
-                            <span>Investing <strong class="text-white">₹10–40 lakhs</strong> in a traditional B-School degree</span>
+                            <span>Investing <strong class="text-white">Rs. 10–40 lakhs</strong> in B-School degree</span>
                         </li>
                     </ul>
                 </div>
@@ -176,7 +181,10 @@
                 <!-- Option B -->
                 <div class="glass-card rounded-2xl p-8 border border-accent-blue text-left relative overflow-hidden bg-bg-surface/80">
                      <div class="absolute top-0 right-0 bg-accent-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg">THE BUILDER'S PATH</div>
-                     <h3 class="text-accent-blue font-bold uppercase text-xs tracking-widest mb-4">Option B: The Startup School</h3>
+                     
+                     <!-- Updated Title -->
+                     <h3 class="text-accent-blue font-black uppercase text-2xl tracking-widest mb-6">OPTION B</h3>
+                     
                     <ul class="space-y-4 text-text-primary">
                         <li class="flex items-start">
                             <i class="fas fa-rocket mt-1 mr-3 text-functional-success"></i>
@@ -184,11 +192,12 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-coins mt-1 mr-3 text-functional-success"></i>
-                            <span>Investing that capital in <strong class="text-white">building your startup</strong></span>
+                            <span>Investing capital in <strong class="text-white">building your startup</strong></span>
                         </li>
                     </ul>
                 </div>
             </div>
+
 
             <div class="max-w-3xl mx-auto">
                 <p class="text-xl md:text-2xl text-text-primary font-medium mb-4">
@@ -424,7 +433,7 @@
     <section class="py-20 bg-black text-text-primary border-t border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">FOUNDER’S WORK & PROOF</h2>
+                <!-- <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">FOUNDER’S WORK & PROOF</h2> -->
                 <p class="text-text-secondary max-w-3xl mx-auto">
                     This school is not built on theory.<br>
                     It is built on lived experience, scars, and lessons earned the hard way.
