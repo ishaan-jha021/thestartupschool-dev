@@ -110,7 +110,7 @@
     <nav class="fixed w-full z-50 bg-bg-main/90 backdrop-blur-md border-b border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo: Adjusted for mobile (smaller, one line) -->
+                <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <span class="text-lg md:text-2xl font-black text-text-primary tracking-tighter whitespace-nowrap">THE <span class="text-accent-blue">STARTUP</span> SCHOOL</span>
                 </div>
@@ -145,8 +145,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section: The Investment Question -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-20 overflow-hidden">
+    <!-- 1. Hero Section: The Investment Question -->
+   <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-20 overflow-hidden">
         <div class="absolute inset-0 bg-pattern z-0"></div>
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/20 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -210,46 +210,8 @@
         </div>
     </section>
 
-    <!-- Who Is This For? -->
-    <section class="py-20 bg-bg-main border-t border-functional-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-text-primary">For All Those Aspiring Souls Who Are:</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Persona 1 -->
-                <div class="bg-bg-surface border border-functional-border p-8 rounded-xl hover:border-accent-blue transition group cursor-pointer h-full">
-                    <div class="w-12 h-12 bg-bg-main text-accent-blue rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-blue group-hover:text-white transition">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
-                        Passionate about starting something big, but still searching for the right idea.
-                    </p>
-                </div>
-                <!-- Persona 2 -->
-                <div class="bg-bg-surface border border-functional-border p-8 rounded-xl hover:border-accent-violet transition group cursor-pointer h-full">
-                    <div class="w-12 h-12 bg-bg-main text-accent-violet rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-violet group-hover:text-white transition">
-                        <i class="fas fa-chair"></i>
-                    </div>
-                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
-                        Sitting on a solid startup idea, yet unsure how to take the first real step.
-                    </p>
-                </div>
-                <!-- Persona 3 -->
-                <div class="bg-bg-surface border border-functional-border p-8 rounded-xl hover:border-accent-blue transition group cursor-pointer h-full">
-                    <div class="w-12 h-12 bg-bg-main text-accent-blue rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-blue group-hover:text-white transition">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
-                        Already grinding on an idea, but stuck — wondering how to scale, survive, and win.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Introduction Section -->
-    <section id="about" class="py-24 relative overflow-hidden">
+    <!-- 2. Introduction Section -->
+    <section id="about" class="py-24 relative overflow-hidden border-t border-functional-border">
         <div class="absolute inset-0 bg-bg-surface/50"></div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <span class="text-accent-violet font-bold tracking-widest uppercase text-sm mb-4 block">Introducing</span>
@@ -260,24 +222,43 @@
                 An alternate B-School for all Aspiring Founders.
             </p>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 flex-wrap">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success">
-                        <i class="fas fa-check"></i>
+            <!-- Philosophy Bubbles -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center">
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
+                        <i class="fas fa-wallet"></i>
                     </div>
-                    <span class="text-xl font-bold text-white">Highly Affordable</span>
+                    <span class="text-lg font-bold text-white">Highly Affordable</span>
                 </div>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success">
-                        <i class="fas fa-check"></i>
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
+                        <i class="fas fa-hourglass-half"></i>
                     </div>
-                    <span class="text-xl font-bold text-white">Time Saving</span>
+                    <span class="text-lg font-bold text-white">Extremely Time-Saving</span>
                 </div>
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
+                        <i class="fas fa-chalkboard"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">Live Classroom Programs</span>
+                </div>
+                 <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">Rigorous and In-depth</span>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <p class="text-xl md:text-2xl text-accent-blue font-bold italic">
+                    "Your idea shapes into a startup here !"
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- The 4 Deadly Gaps -->
+    <!-- 3. The Core Alignment (4 Deadly Gaps) -->
     <section class="py-20 bg-bg-main">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -289,19 +270,19 @@
                 <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-blue transition duration-300 text-center">
                     <div class="text-3xl text-accent-blue mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
                     <h3 class="text-xl font-bold mb-2 text-text-primary">Learning</h3>
-                    <p class="text-text-secondary text-sm">Experiential and Live.</p>
+                    <p class="text-text-secondary text-sm">Experiential, Live, In-depth, Outcome-driven.</p>
                 </div>
                 <!-- Gap 2 -->
                 <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-violet transition duration-300 text-center">
                     <div class="text-3xl text-accent-violet mb-4"><i class="fas fa-network-wired"></i></div>
                     <h3 class="text-xl font-bold mb-2 text-text-primary">Access</h3>
-                    <p class="text-text-secondary text-sm">To world-class tools, network, and Intel.</p>
+                    <p class="text-text-secondary text-sm">To world-class tools, industry network, and intel.</p>
                 </div>
                 <!-- Gap 3 -->
                 <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-blue transition duration-300 text-center">
                     <div class="text-3xl text-accent-blue mb-4"><i class="fas fa-user-astronaut"></i></div>
                     <h3 class="text-xl font-bold mb-2 text-text-primary">Mentoring</h3>
-                    <p class="text-text-secondary text-sm">By Titans.</p>
+                    <p class="text-text-secondary text-sm">By industry titans.</p>
                 </div>
                 <!-- Gap 4 -->
                 <div class="p-6 bg-bg-surface rounded-xl border border-functional-border hover:border-accent-violet transition duration-300 text-center">
@@ -313,8 +294,51 @@
         </div>
     </section>
 
-    <!-- Programs Section -->
-    <section id="programs" class="py-24 bg-bg-surface border-y border-functional-border">
+    <!-- 4. Target Audience (Who Is This For?) -->
+    <section class="py-20 bg-bg-surface border-y border-functional-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-text-primary">Inviting all aspiring souls who are ::</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Persona 1 -->
+                <div class="bg-bg-main border border-functional-border p-8 rounded-xl hover:border-accent-blue transition group cursor-pointer h-full">
+                    <div class="w-12 h-12 bg-bg-surface text-accent-blue rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-blue group-hover:text-white transition">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
+                        Passionate about starting something big, but still searching for the right idea.
+                    </p>
+                </div>
+                <!-- Persona 2 -->
+                <div class="bg-bg-main border border-functional-border p-8 rounded-xl hover:border-accent-violet transition group cursor-pointer h-full">
+                    <div class="w-12 h-12 bg-bg-surface text-accent-violet rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-violet group-hover:text-white transition">
+                        <i class="fas fa-chair"></i>
+                    </div>
+                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
+                        Sitting on a solid startup idea, yet unsure how to take the first real step.
+                    </p>
+                </div>
+                <!-- Persona 3 -->
+                <div class="bg-bg-main border border-functional-border p-8 rounded-xl hover:border-accent-blue transition group cursor-pointer h-full">
+                    <div class="w-12 h-12 bg-bg-surface text-accent-blue rounded-lg flex items-center justify-center text-xl mb-6 border border-functional-border group-hover:bg-accent-blue group-hover:text-white transition">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <p class="text-text-secondary group-hover:text-text-primary transition leading-relaxed">
+                        Already grinding on an idea, but stuck — wondering how to scale, survive, and win.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center">
+                 <p class="text-xl md:text-2xl text-white font-bold">
+                    For all those who have <span class="text-accent-blue">"KEEDA"</span> and <span class="text-accent-violet">"HIMMAT"</span> :
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Programs Section -->
+    <section id="programs" class="py-24 bg-bg-main">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-text-primary">Programs Launching Soon</h2>
@@ -322,7 +346,7 @@
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Program 1 -->
-                <div class="bg-bg-main rounded-2xl p-8 border border-functional-border hover:border-accent-blue transition flex flex-col justify-between">
+                <div class="bg-bg-surface rounded-2xl p-8 border border-functional-border hover:border-accent-blue transition flex flex-col justify-between">
                     <div>
                         <div class="text-accent-blue font-bold text-sm uppercase tracking-wider mb-2">The Spark</div>
                         <h3 class="text-2xl font-bold text-white mb-4">3-Day Ignition Sprint</h3>
@@ -335,12 +359,12 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="document.getElementById('contact').scrollIntoView()" class="w-full border border-functional-border text-text-primary font-bold py-3 rounded-lg hover:bg-bg-surface transition">Express your Interest</button>
+                    <button onclick="document.getElementById('contact').scrollIntoView()" class="w-full border border-functional-border text-text-primary font-bold py-3 rounded-lg hover:bg-bg-main transition">Express your Interest</button>
                 </div>
 
                 <!-- Program 2 -->
                 <div class="bg-gradient-primary rounded-2xl p-1 relative overflow-hidden">
-                    <div class="bg-bg-main h-full rounded-xl p-8 flex flex-col justify-between relative z-10">
+                    <div class="bg-bg-surface h-full rounded-xl p-8 flex flex-col justify-between relative z-10">
                         <div>
                             <div class="text-accent-violet font-bold text-sm uppercase tracking-wider mb-2">The Transformation</div>
                             <h3 class="text-2xl font-bold text-white mb-4">30-Days Deep-Dive Immersion Cohorts</h3>
@@ -355,6 +379,7 @@
                 </div>
             </div>
             
+            <!-- 6. Call to Action -->
             <div class="text-center mt-12">
                  <p class="text-text-primary font-medium mb-4">For passionate souls:</p>
                  <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-accent-blue text-white px-8 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:bg-accent-violet transition transform hover:-translate-y-1">
@@ -364,8 +389,8 @@
         </div>
     </section>
 
-    <!-- Manifesto Section -->
-    <section id="manifesto" class="py-24 bg-bg-main relative overflow-hidden">
+    <!-- 7. Manifesto Section -->
+    <section id="manifesto" class="py-24 bg-bg-surface relative overflow-hidden border-t border-functional-border">
         <!-- Decorative bg elements -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-accent-violet/10 rounded-full blur-3xl opacity-30"></div>
         <div class="absolute bottom-0 left-0 w-80 h-80 bg-accent-blue/10 rounded-full blur-3xl opacity-30"></div>
@@ -375,7 +400,7 @@
                 <span class="text-accent-blue font-bold tracking-widest uppercase text-xs border border-accent-blue/30 px-3 py-1 rounded-full">The Founder’s Manifesto</span>
             </div>
 
-            <!-- Founder Details (Moved to Top) -->
+            <!-- Founder Details -->
             <div class="mb-10 flex flex-col md:flex-row items-start md:items-center justify-start gap-6">
                 <div class="w-20 h-20 rounded-full bg-gradient-primary p-1 flex-shrink-0">
                     <img src="gaurav.jpg" alt="Gaurav Bansal" class="w-full h-full rounded-full object-cover" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Gaurav+Bansal&background=0D8ABC&color=fff';">
@@ -389,51 +414,52 @@
                 </div>
             </div>
 
-            <!-- Reverted to Justified, Left Border Style -->
+            <!-- Text Content -->
             <div class="manifesto-font text-lg md:text-xl text-text-secondary leading-relaxed space-y-6 text-justify border-l-4 border-accent-blue pl-6 md:pl-10">
                 <!-- Hindi Quote -->
                 <h3 class="text-2xl md:text-3xl font-bold text-white leading-relaxed mb-6 not-italic">
                     “दिल में हो आग तो जलती रहनी चाहिए,<br> 
-                    तेरा हो चाहे मेरा, <span class="text-accent-violet">सपना ज़िंदा रहना चाहिए!</span>”
+                    तेरा हो चाहे मेरा,<br>
+                    <span class="text-accent-violet">सपना ज़िंदा रहना चाहिए!</span>”
                 </h3>
 
-                <p>
-                    Startups in India aren't built in garages; they are built at <strong class="text-text-primary">kitchen tables</strong> — amid family debates and financial anxiety.
-                </p>
-                <p>
-                    In a country like <strong class="text-text-primary">BHARAT</strong>, the “Opportunity Cost” isn't just a line on a spreadsheet — it is a weight on a founder’s soul. For the middle-class dreamer, choosing a startup over a steady paycheck is an act of war against social security.
-                </p>
-                <p>
-                    A startup’s greatest enemy isn’t a competitor — it’s the <strong class="text-text-primary">“Initial Days Vacuum.”</strong> We talk about “funding”, but we forget about “foundation”.
-                </p>
-                <p>
-                    Everyone has the <em class="text-white">Keeda</em> (the itch) and the <em class="text-white">Himmat</em> (the courage), but courage without a compass is just a slow way to get lost.
-                </p>
-                <p>
-                    We treat early-stage startups like athletes, but we should treat them like infants. If you don’t hold the hand that is trying to build, that hand will eventually reach for a corporate cubicle just to survive.
-                </p>
-                <p>
-                    I believe tactical, hands-on support in the first 100 days is more valuable than a seed check in the first 300. We need to stop letting “outliers” die because they didn’t have a map.
-                </p>
-                <p>
-                    If we provide the right scaffolding to the aspiring founder, we won’t just see more startups — we will see an era of <strong class="text-white">unstoppable builders.</strong>
-                </p>
-                <p>
-                    It doesn’t matter whose hand holds the torch, as long as the darkness is defeated. I am not here to just invest; I am here to ensure the fire doesn’t go out before the sun rises.
-                </p>
+                <p>Startups in India aren't built in garages; they are built at <strong class="text-text-primary">kitchen tables</strong> amidst family debates, silent sacrifices, and financial anxiety.</p>
+
+                <p>In a country like <strong class="text-text-primary">BHARAT</strong>, the “Opportunity Cost” isn't just a line on a spreadsheet — it is a weight on a founder’s soul.</p>
+
+                <p>For the middle-class dreamer, choosing a startup over a steady paycheck is an act of war against social security.</p>
+
+                <p>A startup’s greatest enemy isn't competition — it’s the <strong class="text-text-primary">“Initial Days Vacuum”</strong>. We talk about “funding”, but we forget about “foundation”.</p>
+
+                <p>Many have the <em class="text-white">‘Keeda’</em> (the itch) and the <em class="text-white">‘Himmat’</em> (the courage), but courage without a compass is just a slow way to get lost.</p>
+
+                <p>The ecosystem treats early-stage startups like athletes; in reality, they need to be treated like infants.</p>
+
+                <p>If you don't hold the hand that is trying to build, that hand will eventually reach for a corporate cubicle just to survive.</p>
+
+                <p>I believe tactical, hands-on support in the first 100 days is more valuable than a seed check in the first 300.</p>
+
+                <p>Outliers don’t die because they lack talent — they die because they lack a map.</p>
+
+                <p>If we provide the right scaffolding to the aspiring founder, we won't just see more startups — we will unlock an era of <strong class="text-white">unstoppable builders.</strong></p>
+
+                <p>It doesn’t matter whose hand holds the torch, as long as the darkness is defeated.</p>
+
+                <p>I am not here to just invest; I am here to ensure the fire doesn't go out before the sun rises.</p>
+
                 <p class="font-bold text-accent-blue italic text-xl mt-6 block">
-                    “I lost my startup so that you don’t have to lose yours. My failure was a lesson; my mission is your survival.”
+                    “I lost my startup so that you don't have to lose yours. My failure was a lesson; My mission is your success.”
                 </p>
             </div>
 
         </div>
     </section>
 
-    <!-- Founder's Work & Proof Section -->
+    <!-- 8. Founder's Work & Proof Section (Founder Media) -->
     <section class="py-20 bg-black text-text-primary border-t border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <!-- <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">FOUNDER’S WORK & PROOF</h2> -->
+                 <!-- <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">FOUNDER’S WORK & PROOF</h2> -->
                 <p class="text-text-secondary max-w-3xl mx-auto">
                     This school is not built on theory.<br>
                     It is built on lived experience, scars, and lessons earned the hard way.
@@ -441,22 +467,22 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Block 1: The Bootcamp (Updated) -->
+                <!-- Block 1: The Bootcamp -->
                 <div class="bg-bg-surface border border-functional-border rounded-xl p-6 hover:border-accent-blue transition group flex flex-col h-full">
                     <h3 class="text-xl font-bold text-white mb-4 text-center">Mentor Panel: E-Cell IIT Madras</h3>
                     <div class="aspect-video bg-bg-main rounded-lg mb-6 flex items-center justify-center border border-functional-border group-hover:border-accent-blue/50 transition relative overflow-hidden">
                          <img src="bootcamp.jpeg" alt="Mentor Panel at IIT Madras" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-300">
                     </div>
                     
-                     <p class="text-text-secondary text-sm mb-6 flex-grow">
-                       Invited as a Mentor at E-Cell IIT Madras. Mentoring early-stage founders, reviewing startup ideas, and providing practical guidance on execution and validation.
+                      <p class="text-text-secondary text-sm mb-6 flex-grow">
+                        Invited as a Mentor at E-Cell IIT Madras. Mentoring early-stage founders, reviewing startup ideas, and providing practical guidance on execution and validation.
                     </p>
                     <a href="https://www.linkedin.com/posts/gauravbansal2_mentor-iit-startup-activity-7404790908174450688-P0G5?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADU8MA4Bu-Z-EZKMZRNCs9TMRf6ND89yVds" target="_blank" class="block w-full text-center border border-functional-border text-text-primary font-bold py-3 rounded-lg hover:bg-bg-main hover:text-accent-blue transition">
                         <i class="fab fa-linkedin mr-2"></i> Explore More
                     </a>
                 </div>
 
-                <!-- Block 2: IIM Rohtak (Updated) -->
+                <!-- Block 2: IIM Rohtak -->
                 <div class="bg-bg-surface border border-functional-border rounded-xl p-6 hover:border-accent-violet transition group flex flex-col h-full">
                     <h3 class="text-xl font-bold text-white mb-4 text-center">IIM ROHTAK: JUDGE & MENTOR</h3>
                     <div class="aspect-video bg-bg-main rounded-lg mb-6 flex items-center justify-center border border-functional-border group-hover:border-accent-violet/50 transition relative overflow-hidden">
@@ -471,7 +497,7 @@
                     </a>
                 </div>
 
-                <!-- Block 3: YouTube Video (Updated) -->
+                <!-- Block 3: YouTube Video -->
                 <div class="bg-bg-surface border border-functional-border rounded-xl p-6 hover:border-red-500 transition group flex flex-col h-full">
                     <h3 class="text-xl font-bold text-white mb-4 text-center">SESSION AT DOON B. SCHOOL</h3>
                     
@@ -500,7 +526,7 @@
         </div>
     </section>
 
-    <!-- Contact / Lead Gen -->
+    <!-- 9. Contact / Next Steps -->
     <section id="contact" class="py-24 bg-gradient-to-b from-bg-main to-black border-t border-functional-border">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass-card rounded-2xl shadow-2xl p-8 md:p-12 border border-functional-border relative overflow-hidden">
