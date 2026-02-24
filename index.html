@@ -19,8 +19,8 @@
                             secondary: '#94A3B8', // --text-secondary
                         },
                         accent: {
-                            blue: '#8B5CF6',      // Violet-500 (Replaces Blue)
-                            violet: '#D946EF',    // Fuchsia-500 (Replaces Violet for gradient)
+                            blue: '#8B5CF6',      // Violet-500
+                            violet: '#D946EF',    // Fuchsia-500
                         },
                         functional: {
                             success: '#10B981',   // --color-success
@@ -33,10 +33,196 @@
                     },
                     backgroundImage: {
                         'gradient-primary': 'linear-gradient(135deg, #8B5CF6, #D946EF)',
+                    },
+                    animation: {
+                        'scroll-left': 'scrollLeft 40s linear infinite',
+                        'scroll-right': 'scrollRight 40s linear infinite',
+                    },
+                    keyframes: {
+                        scrollLeft: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        scrollRight: {
+                            '0%': { transform: 'translateX(-50%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        }
                     }
                 }
             }
         }
+
+        // --- MENTOR SYSTEM LOGIC ---
+
+        class MentorProfile {
+            // Updated Constructor to include LinkedIn URL
+            constructor(name, title, credentials, imageFileName, linkedinUrl) {
+                this.name = name;
+                this.title = title;
+                // Ensure credentials is an array for the join() method later
+                this.credentials = Array.isArray(credentials) ? credentials : [credentials];
+                
+                // Logic: If a filename is provided, assume it's in an 'images' folder.
+                this.image = imageFileName ? `mentor-images/${imageFileName}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1E293B&color=8B5CF6&size=200&font-size=0.33`;
+                
+                this.linkedinUrl = linkedinUrl;
+            }
+        }
+
+        // Expanded Data Source: Mentors from CSV
+        const mentorsData = [
+            new MentorProfile(
+                "Vikram Anand Bhushan", 
+                "Co-Founder, Hypermine", 
+                [
+                    "Founder with 11+ years of experience scaling blockchain venture, currently building privacy-first digital trust infrastructure through Hypermine."
+                ],
+                "vikrambanand.jpeg",
+                "https://www.linkedin.com/in/vikrambanand/"
+            ),
+            new MentorProfile(
+                "Ashish Kulkarni", 
+                "Founder, Founders' Psyche", 
+                [
+                    "Ex-CoFounder - FundEnable, MBA-IE Business School-Spain. Ex-Research Assistant - INSEAD, France. Brings strong experience of building startups and raising funds."
+                ],
+                "Ashish_kulkarni.jpeg",
+                "https://www.linkedin.com/in/ashishkul/"
+            ),
+            // new MentorProfile(
+            //     "Meenal Sharma", 
+            //     "Ex-Founder, M&A Expert", 
+            //     [
+            //         "Working with one of the top consulting firms as TA - Mergers & Acquisitions. Holds strong expertise in Aromatherapy and essential oil blending."
+            //     ],
+            //     "meenal.png",
+            //     "https://www.linkedin.com/in/meenalsharma8284/"
+            // ),
+            new MentorProfile(
+                "Vaibhav Bhargava", 
+                "Salesforce Architect", 
+                [
+                    "Salesforce Architect at JLL with 15+ years of experience across JLL, PwC, PTC, and Amdocs, leading enterprise Salesforce architecture and digital transformation initiatives."
+                ],
+                "vaibhav_bhargava.jpeg",
+                "https://www.linkedin.com/in/vaibhav-bhargava-0a1364a/"
+            ),
+            new MentorProfile(
+                "Harsh Gupta", 
+                "PhD, Quantum Error Correction", 
+                [
+                    "Ph.D. scholar at IISER, Bhopal researching Quantum Error Correction in Measurement-Based Quantum Computing. M.Tech from NIT-Srinagar, prior industry experience at Infosys."
+                ],
+                "harsh_gupta.jpeg",
+                "https://www.linkedin.com/in/harsh-gupta-aa3bbb99/"
+            ),
+            new MentorProfile(
+                "Pavan Agarwal", 
+                "Founder, DD Cinemas", 
+                [
+                    "'The Cinema Man of UP-East.' Founder of DD Cinema, currently operating 30+ multiplex screens with a strategic expansion to 50+ screens by the end of 2026."
+                ],
+                "pavan_dd.png",
+                "https://www.linkedin.com/in/pavan-agarwal-8353092/"
+            ),
+            // new MentorProfile(
+            //     "Upyukt Prakash", 
+            //     "Senior Principal Consultant", 
+            //     [
+            //         "Senior Principal Consultant with 18+ years of experience in project management, process transformation, and Lean Six Sigma, previously at TCS and Thales Avionics-USA."
+            //     ],
+            //     "upyukt.png",
+            //     "https://www.linkedin.com/in/upyukt-prakash-mater-black-belt-six-sigma-0b821514/"
+            // ),
+            new MentorProfile(
+                "CA Moon Goel", 
+                "CA, Co-Founder - Vitt Kushal", 
+                [
+                    "20+ yrs work-ex in forensic accounting, internal audit, compliance, and tax advisory. Expertise in guiding startups for financial forecasting, valuation and cap table management."
+                ],
+                "moongoel.jpeg",
+                "https://www.linkedin.com/in/moongoel/"
+            ),
+            // new MentorProfile(
+            //     "Pawan Mishra", 
+            //     "Ex-Co-founder", 
+            //     [
+            //         "Ex-Co-Founder of an ecommerce startup. Brings a strong foundation in building scalable consumer tech products. contributing to large-scale fintech and commerce platforms."
+            //     ],
+            //     "pawan.jpeg",
+            //     "https://www.linkedin.com/in/pawan-mishra-2910/"
+            // ),
+            new MentorProfile(
+                "CA Mahendra Tiwari", 
+                "CA, Partner", 
+                [
+                    "20+ yrs of work ex with expertise in startup valuation, Small Business Tax Preparation, Bookkeeping and Accounting."
+                ],
+                "mahendra.png",
+                "https://www.linkedin.com/in/mahendra-tiwari-4a62b112/" 
+            ),
+            new MentorProfile(
+                "Akash Kansal", 
+                "Founder, Author", 
+                [
+                    "A FMS-Delhi passout, he brings with him 12+ yrs of expereince in building products , strategy at organisations like 99acre, Droom, Deloitte. His book 'The class of 2006' was launched by R.Madhavan. Currently building next Gen AI Products in B2B SAAS."
+                ],
+                "akash.jpeg",
+                "https://www.linkedin.com/in/akashkansal/" 
+            )
+        ];
+
+        // Function to create card HTML
+        function createMentorCard(mentor) {
+            const description = mentor.credentials.join(" ");
+
+            return `
+                <div class="glass-card w-[300px] flex-shrink-0 rounded-2xl p-5 border border-functional-border hover:border-accent-violet transition duration-300 group flex flex-col mx-3 select-none h-full bg-bg-surface/50 relative">
+                    
+                    ${mentor.linkedinUrl ? `
+                    <a href="${mentor.linkedinUrl}" target="_blank" class="absolute top-4 right-4 text-text-secondary hover:text-[#0A66C2] transition-colors z-20" title="Connect on LinkedIn">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>` : ''}
+
+                    <div class="flex items-start gap-3 mb-4 pr-8">
+                        <div class="w-14 h-14 rounded-full p-0.5 bg-gradient-to-br from-accent-blue to-accent-violet flex-shrink-0 shadow-lg shadow-accent-blue/20">
+                            <img src="${mentor.image}" alt="${mentor.name}" class="w-full h-full rounded-full object-cover bg-bg-main" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=1E293B&color=8B5CF6&size=200&font-size=0.33'">
+                        </div>
+                        <div class="pt-1 flex-1 min-w-0">
+                            <h3 class="text-lg font-bold text-white group-hover:text-accent-violet transition leading-tight mb-1">${mentor.name}</h3>
+                            <p class="gradient-text text-xs font-bold uppercase tracking-wider line-clamp-2">${mentor.title}</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow border-t border-functional-border/50 pt-3">
+                        <p class="text-text-secondary text-xs leading-relaxed font-light">
+                            ${description}
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Scrolling Rows
+        function renderMentors() {
+            const row1Container = document.getElementById('scroll-row-1');
+            const row2Container = document.getElementById('scroll-row-2');
+            
+            if (!row1Container || !row2Container) return;
+
+            const splitIndex = Math.ceil(mentorsData.length / 2);
+            
+            const firstHalf = mentorsData.slice(0, splitIndex);
+            const secondHalf = mentorsData.slice(splitIndex);
+
+            // Duplicate arrays to create seamless loop
+            const row1Content = [...firstHalf, ...firstHalf, ...firstHalf, ...firstHalf].map(createMentorCard).join('');
+            const row2Content = [...secondHalf, ...secondHalf, ...secondHalf, ...secondHalf].map(createMentorCard).join('');
+
+            row1Container.innerHTML = row1Content;
+            row2Container.innerHTML = row2Content;
+        }
+
+        // --- END MENTOR SYSTEM LOGIC ---
 
         function handleFormSubmit(event) {
             event.preventDefault();
@@ -56,13 +242,10 @@
             menu.classList.toggle('hidden');
         }
 
-        // New function to play video inline
         function playVideo(container, videoId) {
-            // Remove click handler to prevent re-triggering
             container.onclick = null;
             container.classList.remove('cursor-pointer');
             
-            // Using youtube-nocookie and removing restrictive referrer policy to fix Error 153
             container.innerHTML = `<iframe 
                 width="100%" 
                 height="100%" 
@@ -73,6 +256,11 @@
                 allowfullscreen>
             </iframe>`;
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMentors();
+        });
+
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
@@ -102,6 +290,41 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid #334155;
         }
+        
+        /* --- ANIMATION LOGIC UPDATE --- */
+
+        /* 1. Desktop Only: Pause on Hover (Requires a mouse) */
+        @media (hover: hover) {
+            .pause-on-hover:hover .animate-scroll-left,
+            .pause-on-hover:hover .animate-scroll-right {
+                animation-play-state: paused;
+            }
+        }
+
+        /* 2. All Devices: Manual Pause Class (Toggled via JS Click) */
+        .is-paused .animate-scroll-left,
+        .is-paused .animate-scroll-right {
+            animation-play-state: paused !important;
+        }
+
+        /* --- END ANIMATION UPDATE --- */
+
+        /* Hide Scrollbars */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Line Clamp Utilities for Compatibility */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-bg-main text-text-primary antialiased selection:bg-accent-blue selection:text-white">
@@ -110,22 +333,18 @@
     <nav class="fixed w-full z-50 bg-bg-main/90 backdrop-blur-md border-b border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <span class="text-lg md:text-2xl font-black text-text-primary tracking-tighter whitespace-nowrap">THE <span class="text-accent-blue">STARTUP</span> SCHOOL</span>
                 </div>
-
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">About</a>
+                    <a href="#mentors" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Mentors</a>
                     <a href="#programs" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Programs</a>
                     <a href="#manifesto" class="text-text-secondary hover:text-accent-blue font-medium transition duration-300">Manifesto</a>
                     <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-gradient-primary hover:opacity-90 text-white px-6 py-2.5 rounded-full font-bold transition shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(217,70,239,0.5)]">
                         Connect
                     </button>
                 </div>
-
-                <!-- Mobile Menu Button (Hamburger) -->
                 <div class="md:hidden flex items-center">
                     <button onclick="toggleMobileMenu()" class="text-text-primary hover:text-accent-blue focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
@@ -133,11 +352,10 @@
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-bg-surface border-t border-functional-border absolute w-full">
             <div class="px-4 pt-2 pb-4 space-y-1">
                 <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">About</a>
+                <a href="#mentors" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">Mentors</a>
                 <a href="#programs" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">Programs</a>
                 <a href="#manifesto" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-text-primary hover:text-white hover:bg-bg-main">Manifesto</a>
                 <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-accent-blue hover:text-accent-violet font-bold">Connect</a>
@@ -145,27 +363,21 @@
         </div>
     </nav>
 
-    <!-- 1. Hero Section: The Investment Question -->
-   <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-20 overflow-hidden">
+    <!-- 1. Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-20 overflow-hidden">
         <div class="absolute inset-0 bg-pattern z-0"></div>
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/20 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-text-primary tracking-tight mb-12 leading-tight">
                 Which <span class="gradient-text">Investment</span> Makes<br> More Sense To You?
             </h1>
 
-            <!-- Comparison Cards -->
             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mb-12 mt-8">
                 <!-- Option A -->
                 <div class="glass-card rounded-2xl p-8 border border-functional-border text-left hover:border-red-400/50 transition duration-300 relative overflow-hidden">
-                    <!-- Added Badge -->
                     <div class="absolute top-0 right-0 bg-gray-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">THE JOB SEEKER'S PATH</div>
-                    
-                    <!-- Updated Title -->
                     <h3 class="text-text-primary font-black uppercase text-2xl tracking-widest mb-6">OPTION A</h3>
-                    
                     <ul class="space-y-4 text-text-secondary">
                         <li class="flex items-start">
                             <i class="fas fa-clock mt-1 mr-3 text-red-400"></i>
@@ -180,11 +392,8 @@
 
                 <!-- Option B -->
                 <div class="glass-card rounded-2xl p-8 border border-accent-blue text-left relative overflow-hidden bg-bg-surface/80">
-                     <div class="absolute top-0 right-0 bg-accent-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg">THE BUILDER'S PATH</div>
-                     
-                     <!-- Updated Title -->
-                     <h3 class="text-accent-blue font-black uppercase text-2xl tracking-widest mb-6">OPTION B</h3>
-                     
+                      <div class="absolute top-0 right-0 bg-accent-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg">THE BUILDER'S PATH</div>
+                      <h3 class="text-accent-blue font-black uppercase text-2xl tracking-widest mb-6">OPTION B</h3>
                     <ul class="space-y-4 text-text-primary">
                         <li class="flex items-start">
                             <i class="fas fa-rocket mt-1 mr-3 text-functional-success"></i>
@@ -196,16 +405,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-
-
-            <div class="max-w-3xl mx-auto">
-                <p class="text-xl md:text-2xl text-text-primary font-medium mb-4">
-                    If your answer is <span class="text-accent-blue">building your startup</span>:
-                </p>
-                <p class="text-lg md:text-xl text-text-secondary italic">
-                    "The B-school you wish existed — is being built."
-                </p>
             </div>
         </div>
     </section>
@@ -222,37 +421,36 @@
                 An alternate B-School for all Aspiring Founders.
             </p>
             
-            <!-- Philosophy Bubbles -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center">
                 <div class="flex flex-col items-center gap-3">
                     <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
                         <i class="fas fa-wallet"></i>
                     </div>
-                    <span class="text-lg font-bold text-white">Highly Affordable</span>
+                    <span class="text-lg font-bold text-white whitespace-nowrap">Highly Affordable</span>
                 </div>
                 <div class="flex flex-col items-center gap-3">
                     <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
                         <i class="fas fa-hourglass-half"></i>
                     </div>
-                    <span class="text-lg font-bold text-white">Extremely Time-Saving</span>
+                    <span class="text-lg font-bold text-white whitespace-nowrap">Extremely Time-Saving</span>
                 </div>
                 <div class="flex flex-col items-center gap-3">
                     <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
                         <i class="fas fa-chalkboard"></i>
                     </div>
-                    <span class="text-lg font-bold text-white">Live Classroom Programs</span>
+                    <span class="text-lg font-bold text-white whitespace-nowrap">Live Classroom Programs</span>
                 </div>
                  <div class="flex flex-col items-center gap-3">
                     <div class="w-12 h-12 rounded-full bg-functional-success/20 flex items-center justify-center text-functional-success text-xl">
                         <i class="fas fa-book-reader"></i>
                     </div>
-                    <span class="text-lg font-bold text-white">Rigorous and In-depth</span>
+                    <span class="text-lg font-bold text-white whitespace-nowrap">Rigorous and In-depth</span>
                 </div>
             </div>
 
             <div class="mt-12">
-                <p class="text-xl md:text-2xl text-accent-blue font-bold italic">
-                    "Your idea shapes into a startup here !"
+                <p class="text-xl md:text-2xl gradient-text font-bold italic">
+                    "Your Idea shapes into a Startup here."
                 </p>
             </div>
         </div>
@@ -294,8 +492,45 @@
         </div>
     </section>
 
+    <!-- Mentors Section -->
+    <section id="mentors" class="py-24 bg-bg-surface border-y border-functional-border relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute -left-20 top-1/4 w-80 h-80 bg-accent-blue/10 rounded-full blur-[80px]"></div>
+        <div class="absolute -right-20 bottom-1/4 w-80 h-80 bg-accent-violet/10 rounded-full blur-[80px]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+                    Where Founders, Skilled Professionals, Business Leaders and Researchers <span class="gradient-text">Shape the Next Generation</span>
+                </h2>
+            </div>
+
+            <!-- Scroll Container -->
+            <!-- ADDED onclick="this.classList.toggle('is-paused')" for mobile toggle -->
+            <div class="relative w-full overflow-hidden space-y-8">
+                
+                <!-- Row 1: Scroll Left -->
+                <div class="pause-on-hover relative flex overflow-hidden w-full cursor-pointer" onclick="this.classList.toggle('is-paused')">
+                      <!-- Inner Track -->
+                    <div id="scroll-row-1" class="flex animate-scroll-left w-max">
+                        <!-- Content Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Row 2: Scroll Right -->
+                <div class="pause-on-hover relative flex overflow-hidden w-full cursor-pointer" onclick="this.classList.toggle('is-paused')">
+                      <!-- Inner Track -->
+                    <div id="scroll-row-2" class="flex animate-scroll-right w-max">
+                          <!-- Content Injected via JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- 4. Target Audience (Who Is This For?) -->
-    <section class="py-20 bg-bg-surface border-y border-functional-border">
+    <section class="py-20 bg-bg-surface border-b border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-text-primary">Inviting all aspiring souls who are ::</h2>
@@ -447,11 +682,11 @@
 
                 <p>I am not here to just invest; I am here to ensure the fire doesn't go out before the sun rises.</p>
 
-                       <p class="font-bold text-accent-blue italic text-xl mt-6 block">
-  “I lost my startup so that you don't have to lose yours.<br>
-  My failure was a lesson;<br>
-  My mission is your success.”
-</p>
+                <p class="font-bold text-accent-blue italic text-xl mt-6 block">
+                  “I lost my startup so that you don't have to lose yours.<br>
+                  My failure was a lesson;<br>
+                  My mission is your success.”
+                </p>
             </div>
 
         </div>
@@ -461,7 +696,6 @@
     <section class="py-20 bg-black text-text-primary border-t border-functional-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                 <!-- <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">FOUNDER’S WORK & PROOF</h2> -->
                 <p class="text-text-secondary max-w-3xl mx-auto">
                     This school is not built on theory.<br>
                     It is built on lived experience, scars, and lessons earned the hard way.
@@ -578,10 +812,9 @@
                     <p class="mt-2 text-sm">Stay tuned for more details …</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-twitter text-xl"></i></a>
-                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-linkedin text-xl"></i></a>
-                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-instagram text-xl"></i></a>
-                    <a href="#" class="hover:text-accent-blue transition"><i class="fab fa-youtube text-xl"></i></a>
+                    <a href="https://x.com/The_startup_sch" target="_blank" class="hover:text-accent-blue transition"><i class="fab fa-x-twitter text-xl"></i></a>
+                    <a href="https://in.linkedin.com/company/the-startup-school-2026" target="_blank" class="hover:text-accent-blue transition"><i class="fab fa-linkedin text-xl"></i></a>
+                    <a href="https://www.instagram.com/the__startup__school/?hl=en" target="_blank" class="hover:text-accent-blue transition"><i class="fab fa-instagram text-xl"></i></a>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-functional-border text-center text-sm">
@@ -593,4 +826,3 @@
 
 </body>
 </html>
-
