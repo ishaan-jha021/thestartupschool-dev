@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-main: #0F111A;
+  --color-bg-surface: #161824;
+  --color-text-primary: #F5F5F7;
+  --color-text-secondary: #86868B;
+  --color-accent-blue: #8B5CF6;
+  --color-accent-violet: #A855F7;
+  --color-functional-success: #34C759;
+  --color-functional-border: #333336;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Merriweather', serif;
+
+  --background-image-gradient-primary: linear-gradient(135deg, #2997FF, #BF48FF);
+
+  --animate-scroll-left: scrollLeft 40s linear infinite;
+  --animate-scroll-right: scrollRight 40s linear infinite;
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(-50%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.02em;
+  /* Tighter tracking for headers (Apple style) */
+}
+
+.manifesto-font {
+  font-family: var(--font-serif);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--color-accent-blue), var(--color-accent-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.bg-pattern {
+  background-color: var(--color-bg-main);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.glass-card {
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Extremely subtle border */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle Apple-like Hover Glow */
+.hover-glow {
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(41, 151, 255, 0.15);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 1. Desktop Only: Pause on Hover (Requires a mouse) */
+@media (hover: hover) {
+
+  .pause-on-hover:hover .animate-scroll-left,
+  .pause-on-hover:hover .animate-scroll-right {
+    animation-play-state: paused;
+  }
+}
+
+/* 2. All Devices: Manual Pause Class (Toggled via JS Click) */
+.is-paused .animate-scroll-left,
+.is-paused .animate-scroll-right {
+  animation-play-state: paused !important;
+}
+
+/* Hide Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Line Clamp Utilities for Compatibility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
