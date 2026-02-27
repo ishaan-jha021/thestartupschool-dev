@@ -33,10 +33,8 @@ export function Navbar() {
                         <Link href="/mentors" className={`${isActive('/mentors') ? 'text-white' : 'text-text-secondary'} hover:text-white transition duration-300`}>MENTORS</Link>
                         <Link href="/events" className={`${isActive('/events') ? 'text-white' : 'text-text-secondary'} hover:text-white transition duration-300`}>EVENTS</Link>
                         <Link href="/tools" className={`${isActive('/tools') || pathname.startsWith('/tools/') ? 'text-white' : 'text-text-secondary'} hover:text-white transition duration-300`}>TOOLS</Link>
-                        <Link href="/#contact">
-                            <button className="bg-white/10 hover:bg-white text-white hover:text-black px-4 py-1.5 rounded-full font-medium transition duration-300 border border-white/10">
-                                Connect
-                            </button>
+                        <Link href="/#contact" className="bg-white/10 hover:bg-white text-white hover:text-black px-4 py-1.5 rounded-full font-medium transition duration-300 border border-white/10">
+                            Connect
                         </Link>
                     </div>
                     {/* Mobile Toggle */}

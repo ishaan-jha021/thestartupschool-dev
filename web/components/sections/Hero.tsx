@@ -60,11 +60,9 @@ export function Hero() {
 
                 {/* Primary CTA */}
                 <div className="flex flex-col items-center">
-                    <Link href="/programs">
-                        <button className="group flex items-center justify-center bg-white text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-                            Explore Programs
-                            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </button>
+                    <Link href="/programs" className="group flex items-center justify-center bg-white text-black px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                        Explore Programs
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
             </div>
