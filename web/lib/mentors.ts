@@ -12,7 +12,7 @@ export const mentorsData: MentorProfile[] = [
         title: "Co-Founder, Hypermine",
         credentials: ["Founder with 11+ years of experience scaling blockchain venture, currently building privacy-first digital trust infrastructure through Hypermine."],
         image: "/vikrambanand.jpeg",
-        linkedinUrl: "https://www.linkedin.com/in/vikrambanand/"
+        linkedinUrl: "https://www.linkedin.com/in/vikrambanand/?originalSubdomain=ae"
     },
     {
         name: "Ashish Kulkarni",
