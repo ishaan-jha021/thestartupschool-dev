@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Events & Workshops | The Startup School',
@@ -59,6 +60,40 @@ export default function EventsPage() {
                             </div>
                             <p className="text-white font-bold text-xl mb-2 tracking-tight">More events being scheduled.</p>
                             <p className="text-text-secondary text-lg">Stay tuned for updates.</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Past Events */}
+                <section className="mb-32">
+                    <h2 className="text-2xl font-bold text-white mb-10 tracking-tight pb-4 border-b border-white/10">Past Events</h2>
+
+                    <div className="grid lg:grid-cols-2 gap-8">
+                        {/* Past Event Card */}
+                        <div className="glass-card hover-glow rounded-3xl p-8 md:p-10 border border-white/5 relative group h-full flex flex-col bg-[#050505]">
+                            <div className="flex justify-between items-start mb-8">
+                                <div className="bg-white/10 border border-white/20 text-text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                                    Concluded
+                                </div>
+                                <div className="text-accent-blue font-bold text-sm tracking-widest uppercase flex items-center gap-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-[-8px] transition-all">View Details &rarr;</div>
+                            </div>
+
+                            <h3 className="text-3xl font-bold text-white mb-4 tracking-[-0.02em] leading-tight group-hover:text-accent-blue transition duration-300">Founder's Dating</h3>
+                            <p className="text-text-secondary text-lg leading-relaxed mb-10 flex-grow">A curated offline meetup for founders & builders. We skipped the awkward small talk, facilitated expert matchmaking, and ran rigorous breakout sessions to help builders find their exact business soulmates.</p>
+
+                            <div className="flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center mt-auto pt-8 border-t border-white/5">
+                                <div className="space-y-2">
+                                    <div className="flex items-center text-text-secondary font-medium tracking-wide">
+                                        <i className="far fa-calendar text-white/50 w-6"></i> 14th February (Past)
+                                    </div>
+                                    <div className="flex items-center text-text-secondary font-medium tracking-wide">
+                                        <i className="fas fa-map-marker-alt text-white/50 w-6"></i> DevX, Andheri East
+                                    </div>
+                                </div>
+                                <Link href="/founders-dating-14feb26" className="w-full sm:w-auto bg-white/10 hover:bg-white text-white hover:text-black px-8 py-3 rounded-full font-bold transition duration-300 text-center">
+                                    Read Highlights
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </section>
