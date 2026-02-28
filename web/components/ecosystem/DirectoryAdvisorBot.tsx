@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, User } from 'lucide-react';
 import { westernLineData } from '@/lib/data/western_line';
+import { eventsData } from '@/lib/data/events';
 import { useRouter } from 'next/navigation';
 
 export default function DirectoryAdvisorBot() {
@@ -37,11 +38,16 @@ export default function DirectoryAdvisorBot() {
                 `- **${item.name}** (${item.broadType} ${item.type} in ${item.subRegion}, ${item.area}): Equity: ${item.equityTaken} (${item.equityCategory}), Ideal Stage: ${item.idealStage}, Fee: ${item.fee}, Funding: ${item.fundingGuarantee}, Contact: ${item.contactDetails}${item.website ? `, Website: ${item.website}` : ''}`
             ).join('\n');
 
+            const eventsContextText = eventsData.map(event =>
+                `- **${event.eventName}** (${event.tag} Event on ${event.startDate} ${event.month} at ${event.exhibitionCentre}, ${event.location})`
+            ).join('\n');
+
             const systemPrompt = `You are the Global AI Advisor for The Startup School. 
 You can answer questions using the directory data below, OR redirect users to specific pages on our platform if they explicitly ask to go somewhere or want a specific tool.
 
 Core Platform Sections available for redirection:
 - Main Tools Hub: /tools
+- Founder Events Calendar: /tools/founder-calendar
 - Grants & Government Schemes Tool: /tools/ecosystem/grants
 - Incubators & Coworking Tool: /tools/ecosystem/incubators
 - Investors & Accelerators Tool: /tools/ecosystem/investors
@@ -54,9 +60,14 @@ Core Platform Sections available for redirection:
 
 CRITICAL RULE: *If* the user explicitly asks to go to, find, navigate to, or wants to see one of these core sections (e.g., "I want government grants", "take me to incubators", "show me investors", "go to events", "take me home"), you MUST output EXACTLY this string and nothing else: __REDIRECT:URL__ (replacing URL with the actual path, e.g., __REDIRECT:/tools/ecosystem/grants__).
 
-If they are just asking a conversational question about the data, answer them conversationally and DO NOT use the redirect code. Use markdown to bold names.
+If they are just asking a conversational question about the data, answer them conversationally and DO NOT use the redirect code. Use markdown to bold names. Note that we have data for BOTH "Incubators & Spaces" AND "Upcoming Events".
 
-DIRECTORY DATA:\n${contextText}`;
+DIRECTORY DATA:
+[Incubators & Spaces]
+${contextText}
+
+[Upcoming Events]
+${eventsContextText}`;
 
             const res = await fetch('/api/directory-chat', {
                 method: 'POST',
