@@ -53,6 +53,17 @@ export default function ToolsPage() {
                         <span className="text-accent-blue font-bold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:translate-x-2 transition-transform">Access Tool <span className="text-lg">&rarr;</span></span>
                     </Link>
 
+                    {/* Active Tool 5: Founder Events */}
+                    <Link href="/tools/founder-calendar" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505] lg:col-span-2">
+                        <span className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent-violet/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-accent-violet/20 transition-colors"></span>
+                        <div className="relative z-10">
+                            <span className="bg-accent-violet/20 text-accent-violet text-[10px] font-bold px-3 py-1.5 rounded-full border border-accent-violet/30 uppercase tracking-widest mb-6 inline-block animate-pulse">New Active Tool</span>
+                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-accent-blue transition-colors">Founder Events Calendar</h3>
+                            <p className="text-text-secondary leading-relaxed font-light mb-8 max-w-xl">A curated monthly basis details of all top B2B events and exhibitions. Add to your calendar to never miss an opportunity.</p>
+                            <span className="text-accent-blue font-bold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:translate-x-2 transition-transform">Access Tool <span className="text-lg">&rarr;</span></span>
+                        </div>
+                    </Link>
+
                     {/* Coming Soon Tool 1 */}
                     <div className="glass-card p-8 md:p-10 rounded-3xl border border-dashed border-white/10 bg-[#020202] relative overflow-hidden group">
                         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.02)_50%,transparent_75%,transparent_100%)] bg-[length:4px_4px]"></div>
