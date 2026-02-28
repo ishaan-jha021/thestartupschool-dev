@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { westernLineData } from '@/lib/data/western_line';
 import { eventsData } from '@/lib/data/events';
+import { pitchDecksData, PitchDeck } from '@/lib/data/pitchDecks';
 
 // ─── Shared Marquee wrapper ────────────────────────────────────────────
 function Marquee({ children, reverse = false, speed = 50 }: { children: React.ReactNode; reverse?: boolean; speed?: number }) {
@@ -167,34 +168,25 @@ function EventCard({ item }: { item: typeof eventsData[0] }) {
     );
 }
 
-// ─── 5. Pitch Deck Cards ───────────────────────────────────────────────
-const PITCH_DECKS = [
-    { company: 'Airbnb', round: 'Seed', year: '2009', raised: '$600K', sector: 'Marketplace' },
-    { company: 'Uber', round: 'Series A', year: '2011', raised: '$11M', sector: 'Mobility' },
-    { company: 'Buffer', round: 'Seed', year: '2012', raised: '$500K', sector: 'SaaS' },
-    { company: 'LinkedIn', round: 'Series B', year: '2004', raised: '$10M', sector: 'Professional Network' },
-    { company: 'Facebook', round: 'Seed', year: '2004', raised: '$500K', sector: 'Social' },
-    { company: 'Dropbox', round: 'Seed', year: '2007', raised: '$1.2M', sector: 'Cloud Storage' },
-    { company: 'Tinder', round: 'Seed', year: '2012', raised: '$1M', sector: 'Consumer App' },
-    { company: 'YouTube', round: 'Seed', year: '2005', raised: '$3.5M', sector: 'Media' },
-    { company: 'Mixpanel', round: 'Seed', year: '2009', raised: '$200K', sector: 'Analytics' },
-    { company: 'Square', round: 'Seed', year: '2009', raised: '$10M', sector: 'FinTech' },
-];
-
-function PitchDeckCard({ item }: { item: typeof PITCH_DECKS[0] }) {
+function PitchDeckCard({ item }: { item: PitchDeck }) {
     return (
-        <div className="flex-shrink-0 w-[240px] mx-3 glass-card rounded-2xl p-6 bg-[#0a0a0a]/60 border border-white/5 hover:border-white/20 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default relative">
+        <div className="flex-shrink-0 w-[300px] mx-3 glass-card rounded-2xl p-5 bg-[#0a0a0a]/60 border border-white/5 hover:border-white/20 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default relative">
             <div className="absolute top-3 right-3">
-                <span className="text-[9px] font-bold text-white/30 tracking-widest uppercase bg-white/5 px-2 py-0.5 rounded-full border border-white/10">Soon</span>
+                <span className="text-[9px] font-bold text-white/30 tracking-widest uppercase bg-white/5 px-2 py-0.5 rounded-full border border-white/10">Coming Soon</span>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                <i className="fas fa-file-powerpoint text-white/40 text-sm"></i>
+            <div className="flex items-center gap-3 mb-3">
+                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    <i className="fas fa-file-powerpoint text-white/40 text-sm"></i>
+                </div>
+                <div>
+                    <h4 className="text-white font-black text-base leading-tight">{item.company}</h4>
+                    <p className="text-text-secondary text-[10px]">{item.sector} · {item.year}</p>
+                </div>
             </div>
-            <h4 className="text-white font-black text-xl mb-1">{item.company}</h4>
-            <p className="text-text-secondary text-xs mb-3">{item.sector} · {item.year}</p>
+            <p className="text-text-secondary text-[11px] leading-relaxed mb-3 line-clamp-2 italic">&ldquo;{item.keyLesson}&rdquo;</p>
             <div className="flex gap-2 flex-wrap">
                 <span className="text-[10px] font-bold text-white/50 tracking-widest uppercase bg-white/5 px-2 py-1 rounded-full border border-white/10">{item.round}</span>
-                <span className="text-[10px] font-bold text-green-400 tracking-widest uppercase bg-green-400/10 px-2 py-1 rounded-full border border-green-400/20">{item.raised}</span>
+                <span className="text-[10px] font-bold text-green-400 tracking-widest uppercase bg-green-400/10 px-2 py-1 rounded-full border border-green-400/20">{item.raisedThisRound}</span>
             </div>
         </div>
     );
@@ -203,6 +195,7 @@ function PitchDeckCard({ item }: { item: typeof PITCH_DECKS[0] }) {
 // ─── Main export ───────────────────────────────────────────────────────
 export function ToolsShowcase() {
     const incubators = westernLineData.slice(0, 20);
+    const pitchDecks = pitchDecksData;
     const events = eventsData.slice(0, 30);
 
     return (
@@ -313,7 +306,7 @@ export function ToolsShowcase() {
                     </p>
                 </div>
                 <Marquee speed={35}>
-                    {PITCH_DECKS.map((item, i) => <PitchDeckCard key={`pitch-${i}`} item={item} />)}
+                    {pitchDecks.map((item, i) => <PitchDeckCard key={`pitch-${i}`} item={item} />)}
                 </Marquee>
                 <div className="mt-14 text-center relative z-10">
                     <Link href="/tools" className="group inline-flex items-center text-white/40 hover:text-white font-bold text-base transition duration-300">
