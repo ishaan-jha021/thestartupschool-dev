@@ -134,7 +134,7 @@ export default function FounderCalendar() {
                 </a>
                 <div className="grid grid-cols-2 gap-3">
                     <IcsDownloadButton event={event} />
-                    {event.weblink ? (
+                    {event.weblink && !event.weblink.includes('gtm.whr.ai') ? (
                         <a
                             href={event.weblink}
                             target="_blank"
