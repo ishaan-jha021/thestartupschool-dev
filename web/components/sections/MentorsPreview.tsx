@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { mentorsData, MentorProfile } from '@/lib/mentors';
 
 const MentorCard = ({ mentor }: { mentor: MentorProfile }) => (
-    <div className="flex-shrink-0 w-[280px] glass-card rounded-3xl p-6 flex flex-col items-center text-center group bg-[#0a0a0a]/60 border border-white/5 hover:border-accent-blue/30 transition-colors duration-500 mx-3">
+    <div className="flex-shrink-0 w-[280px] glass-card rounded-3xl p-6 flex flex-col items-center text-center group bg-[#0a0a0a]/60 border border-white/5 hover:border-accent-blue/30 hover:-translate-y-2 transition-all duration-300 ease-out mx-3">
         <div className="w-20 h-20 rounded-full overflow-hidden mb-5 border-2 border-white/10 group-hover:border-accent-blue/50 transition-colors duration-500 p-1">
             <img
                 src={mentor.image}
