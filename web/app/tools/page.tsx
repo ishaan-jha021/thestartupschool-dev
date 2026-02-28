@@ -22,7 +22,7 @@ export default function ToolsPage() {
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto text-left relative z-10 w-full font-light">
                     {/* Active Tool 1: Directory */}
-                    <Link href="/tools/ecosystem/directory" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
+                    <Link href="/tools/incubator-search/directory" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
                         <span className="bg-accent-blue/10 text-accent-blue text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block border border-accent-blue/20">Live Now</span>
                         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-accent-blue transition-colors">Ecosystem Directory</h3>
                         <p className="text-text-secondary leading-relaxed font-light mb-8">An AI-native mapping tool to discover everything across the startup landscape.</p>
@@ -30,23 +30,17 @@ export default function ToolsPage() {
                     </Link>
 
                     {/* Active Tool 2: Grants */}
-                    <Link href="/tools/ecosystem/grants" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
+                    <Link href="/tools/incubator-search/grants" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
                         <span className="bg-accent-blue/10 text-accent-blue text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block border border-accent-blue/20">Live Now</span>
                         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-accent-blue transition-colors">Grants & Schemes</h3>
                         <p className="text-text-secondary leading-relaxed font-light mb-8">Explore government-backed hubs, universities, and pure grants asking for 0% equity.</p>
                         <span className="text-accent-blue font-bold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:translate-x-2 transition-transform">Access Tool <span className="text-lg">&rarr;</span></span>
                     </Link>
 
-                    {/* Active Tool 3: Incubators */}
-                    <Link href="/tools/ecosystem/incubators" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
-                        <span className="bg-accent-blue/10 text-accent-blue text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block border border-accent-blue/20">Live Now</span>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-accent-blue transition-colors">Incubators Search</h3>
-                        <p className="text-text-secondary leading-relaxed font-light mb-8">Find the best coworking spaces, hardware labs, and accelerators to scale your startup.</p>
-                        <span className="text-accent-blue font-bold text-sm tracking-widest uppercase flex items-center gap-2 group-hover:translate-x-2 transition-transform">Access Tool <span className="text-lg">&rarr;</span></span>
-                    </Link>
+
 
                     {/* Active Tool 4: Investors */}
-                    <Link href="/tools/ecosystem/investors" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
+                    <Link href="/tools/incubator-search/investors" className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 hover:border-accent-blue/50 transition-colors group relative overflow-hidden bg-[#050505]">
                         <span className="bg-accent-blue/10 text-accent-blue text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block border border-accent-blue/20">Live Now</span>
                         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-accent-blue transition-colors">Investors Match</h3>
                         <p className="text-text-secondary leading-relaxed font-light mb-8">Discover hubs with the highest investor density and direct seed funding guarantees.</p>

@@ -49,7 +49,7 @@ export default function EcosystemPage() {
                         <p className="text-text-secondary text-lg leading-relaxed mb-10 max-w-3xl mx-auto font-light">
                             We've natively mapped out 50+ top coworking spaces, accelerators, and incubators across Mumbai. Compare equity models, desks, fees, and funding prospects instantly.
                         </p>
-                        <Link href="/tools/ecosystem/directory" className="inline-block bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold transition duration-300">
+                        <Link href="/tools/incubator-search/directory" className="inline-block bg-white hover:bg-gray-200 text-black px-10 py-4 rounded-full font-bold transition duration-300">
                             Explore The Directory
                         </Link>
                     </div>
@@ -58,17 +58,17 @@ export default function EcosystemPage() {
                 {/* Categories Grid */}
                 <section>
                     <div className="grid md:grid-cols-3 gap-8">
-                        <Link href="/tools/ecosystem/grants" className="glass-card p-10 rounded-3xl border border-white/5 relative group hover:border-accent-blue/50 transition-colors">
+                        <Link href="/tools/incubator-search/grants" className="glass-card p-10 rounded-3xl border border-white/5 relative group hover:border-accent-blue/50 transition-colors">
                             <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent-blue font-bold mb-6 group-hover:scale-110 transition-transform">1</div>
                             <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-blue transition-colors">Grants & Schemes</h3>
                             <p className="text-text-secondary leading-relaxed font-light">Explore government-backed hubs, universities, and pure grants asking for 0% equity.</p>
                         </Link>
-                        <Link href="/tools/ecosystem/incubators" className="glass-card p-10 rounded-3xl border border-white/5 relative group hover:border-accent-blue/50 transition-colors">
+                        <Link href="/tools/incubator-search/incubators" className="glass-card p-10 rounded-3xl border border-white/5 relative group hover:border-accent-blue/50 transition-colors">
                             <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent-blue font-bold mb-6 group-hover:scale-110 transition-transform">2</div>
                             <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-blue transition-colors">Incubators</h3>
                             <p className="text-text-secondary leading-relaxed font-light">Find the best coworking spaces, hardware labs, and accelerators to scale your startup.</p>
                         </Link>
-                        <Link href="/tools/ecosystem/investors" className="glass-card p-10 rounded-3xl border border-white/5 relative group hover:border-accent-blue/50 transition-colors">
+                        <Link href="/tools/incubator-search/investors" className="glass-card p-10 rounded-3xl border border-white/5 relative group hover:border-accent-blue/50 transition-colors">
                             <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-accent-blue font-bold mb-6 group-hover:scale-110 transition-transform">3</div>
                             <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-accent-blue transition-colors">Investors</h3>
                             <p className="text-text-secondary leading-relaxed font-light">Discover hubs with the highest investor density and direct seed funding guarantees.</p>
