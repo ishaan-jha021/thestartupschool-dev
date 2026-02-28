@@ -3,14 +3,22 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { CalendarPlus, MapPin, ExternalLink, Filter } from 'lucide-react';
-import { eventsData, FounderEvent } from '@/lib/data/events';
+import { eventsData, FounderEvent, parseEventStringDates } from '@/lib/data/events';
 import { IcsDownloadButton } from '@/components/ecosystem/IcsDownloadButton';
+
 
 function generateGoogleCalendarUrl(event: FounderEvent) {
     const text = encodeURIComponent(event.eventName);
     const details = encodeURIComponent(`Find out more: ${event.weblink || 'No link provided.'}\n\nDates: ${event.startDate} ${event.month}`);
     const location = encodeURIComponent(`${event.exhibitionCentre}, ${event.location}`);
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&details=${details}&location=${location}`;
+
+    const datesInfo = parseEventStringDates(event);
+    let datesParam = '';
+    if (datesInfo) {
+        datesParam = `&dates=${datesInfo.start}/${datesInfo.end}`;
+    }
+
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&details=${details}&location=${location}${datesParam}`;
 }
 
 // Map event names/tags to broad sectors

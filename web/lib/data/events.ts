@@ -8,6 +8,68 @@ export interface FounderEvent {
   weblink: string;
 }
 
+export function parseEventStringDates(event: FounderEvent): { start: string, end: string } | null {
+  const year = 2026;
+  const str = `${event.startDate}`.toLowerCase().trim();
+
+  const getMonthNum = (mStr: string) => {
+    if (mStr.includes('jan')) return '01';
+    if (mStr.includes('feb')) return '02';
+    if (mStr.includes('mar')) return '03';
+    if (mStr.includes('apr')) return '04';
+    if (mStr.includes('may')) return '05';
+    if (mStr.includes('jun')) return '06';
+    if (mStr.includes('jul')) return '07';
+    if (mStr.includes('aug')) return '08';
+    if (mStr.includes('sep')) return '09';
+    if (mStr.includes('oct')) return '10';
+    if (mStr.includes('nov')) return '11';
+    if (mStr.includes('dec')) return '12';
+    return null;
+  };
+
+  let startMonth = getMonthNum(str) || getMonthNum(event.month.toLowerCase()) || '03';
+  let endMonth = startMonth;
+
+  const numbers = str.match(/\d+/g);
+  if (!numbers || numbers.length === 0) return null;
+
+  let startDay = numbers[0];
+  let endDay = numbers.length > 1 ? numbers[1] : numbers[0];
+
+  if (str.includes('feb') && str.includes('mar')) {
+    startMonth = '02';
+    endMonth = '03';
+  } else if (str.includes('jan') && str.includes('feb')) {
+    startMonth = '01';
+    endMonth = '02';
+  } else if (str.includes('mar') && str.includes('apr')) {
+    startMonth = '03';
+    endMonth = '04';
+  }
+
+  startDay = startDay.padStart(2, '0');
+  endDay = endDay.padStart(2, '0');
+
+  const startDateObj = new Date(year, parseInt(startMonth) - 1, parseInt(startDay));
+  const endDateObj = new Date(year, parseInt(endMonth) - 1, parseInt(endDay));
+
+  // End date is EXCLUSIVE in Google Calendar/ICS for all-day events
+  endDateObj.setDate(endDateObj.getDate() + 1);
+
+  const formatGoogleDate = (d: Date) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}${m}${day}`;
+  };
+
+  return {
+    start: formatGoogleDate(startDateObj),
+    end: formatGoogleDate(endDateObj)
+  };
+}
+
 export const eventsData: FounderEvent[] = [
   {
     "tag": "B2B",

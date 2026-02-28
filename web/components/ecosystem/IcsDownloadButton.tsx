@@ -2,16 +2,20 @@
 
 import React from 'react';
 import { Download } from 'lucide-react';
-import { FounderEvent } from '@/lib/data/events';
+import { FounderEvent, parseEventStringDates } from '@/lib/data/events';
 
 export function IcsDownloadButton({ event }: { event: FounderEvent }) {
     const handleDownload = () => {
-        // Create a simple one-day event based on the month and a rough guess of the date
-        // Since dates like "13-15 Mar" are hard to parse perfectly without a library,
-        // we'll just create a placeholder event for the 1st of that month in 2026 as a reminder
-        // or just let them edit the downloaded file. Ideally, they use Google Calendar which is pre-filled.
-
         const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+        const datesInfo = parseEventStringDates(event);
+
+        let dateParams = '';
+        if (datesInfo) {
+            dateParams = `DTSTART;VALUE=DATE:${datesInfo.start}\nDTEND;VALUE=DATE:${datesInfo.end}\n`;
+        } else {
+            const today = now.substring(0, 8);
+            dateParams = `DTSTART;VALUE=DATE:${today}\n`;
+        }
 
         const icsData = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -19,6 +23,7 @@ PRODID:-//The Startup School//Founder Calendar//EN
 BEGIN:VEVENT
 UID:${Math.random().toString(36).substring(2, 10)}@thestartupschool.in
 DTSTAMP:${now}
+${dateParams.trim()}
 SUMMARY:${event.eventName}
 LOCATION:${event.exhibitionCentre}, ${event.location}
 DESCRIPTION:Dates: ${event.startDate} ${event.month}\\nFind out more: ${event.weblink || 'No link provided.'}
