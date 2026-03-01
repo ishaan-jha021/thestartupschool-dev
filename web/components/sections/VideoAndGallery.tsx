@@ -29,13 +29,13 @@ function PhotoMarquee({ photos, reverse = false }: { photos: string[]; reverse?:
                 {[...photos, ...photos].map((src, i) => (
                     <div
                         key={i}
-                        className="flex-shrink-0 w-72 h-52 mx-2 rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 hover:-translate-y-1.5 transition-all duration-300 group"
+                        className="flex-shrink-0 w-[380px] h-[260px] mx-3 rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 hover:-translate-y-1.5 transition-all duration-300 group"
                     >
                         <Image
                             src={src}
                             alt={`Community moment ${i + 1}`}
-                            width={288}
-                            height={208}
+                            width={380}
+                            height={260}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
                         />
                     </div>
@@ -63,7 +63,7 @@ function PhotoMarquee({ photos, reverse = false }: { photos: string[]; reverse?:
 // ─── Main export ───────────────────────────────────────────────────────
 export function VideoAndGallery() {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
 
     const togglePlay = () => {
@@ -113,6 +113,7 @@ export function VideoAndGallery() {
                         <video
                             ref={videoRef}
                             src="/founder-dating.mp4"
+                            autoPlay
                             muted
                             loop
                             playsInline

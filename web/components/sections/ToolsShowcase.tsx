@@ -40,7 +40,7 @@ function Marquee({ children, reverse = false, speed = 50 }: { children: React.Re
 // ─── 1. Incubator Cards ───────────────────────────────────────────────
 function IncubatorCard({ item }: { item: typeof westernLineData[0] }) {
     return (
-        <div className="flex-shrink-0 w-[300px] mx-3 glass-card rounded-2xl p-6 bg-[#0a0a0a]/60 border border-white/5 hover:border-accent-blue/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
+        <div className="flex-shrink-0 w-[340px] mx-3 glass-card rounded-2xl p-7 bg-[#0a0a0a]/60 border border-white/5 hover:border-accent-blue/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
             <div className="flex items-start justify-between mb-3 gap-2">
                 <span className="text-[10px] font-bold text-accent-blue tracking-widest uppercase bg-accent-blue/10 px-2.5 py-1 rounded-full border border-accent-blue/20 flex-shrink-0">
                     {item.subRegion}
@@ -90,7 +90,7 @@ const INVESTORS = [
 
 function InvestorCard({ item }: { item: typeof INVESTORS[0] }) {
     return (
-        <div className="flex-shrink-0 w-[280px] mx-3 glass-card rounded-2xl p-6 bg-[#0a0a0a]/60 border border-white/5 hover:border-amber-400/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
+        <div className="flex-shrink-0 w-[320px] mx-3 glass-card rounded-2xl p-7 bg-[#0a0a0a]/60 border border-white/5 hover:border-amber-400/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
             <div className="w-10 h-10 rounded-full bg-amber-400/10 border border-amber-400/20 flex items-center justify-center mb-4">
                 <i className="fas fa-chart-line text-amber-400 text-sm"></i>
             </div>
@@ -121,7 +121,7 @@ const GRANTS = [
 
 function GrantCard({ item }: { item: typeof GRANTS[0] }) {
     return (
-        <div className="flex-shrink-0 w-[280px] mx-3 glass-card rounded-2xl p-6 bg-[#0a0a0a]/60 border border-white/5 hover:border-green-400/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
+        <div className="flex-shrink-0 w-[320px] mx-3 glass-card rounded-2xl p-7 bg-[#0a0a0a]/60 border border-white/5 hover:border-green-400/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
             <div className="flex items-center justify-between mb-4">
                 <span className="text-[10px] font-bold text-green-400 tracking-widest uppercase bg-green-400/10 px-2.5 py-1 rounded-full border border-green-400/20">
                     {item.type}
@@ -141,7 +141,7 @@ function GrantCard({ item }: { item: typeof GRANTS[0] }) {
 // ─── 4. Event Cards ───────────────────────────────────────────────────
 function EventCard({ item }: { item: typeof eventsData[0] }) {
     return (
-        <div className="flex-shrink-0 w-[300px] mx-3 glass-card rounded-2xl p-6 bg-[#0a0a0a]/60 border border-white/5 hover:border-accent-violet/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
+        <div className="flex-shrink-0 w-[340px] mx-3 glass-card rounded-2xl p-7 bg-[#0a0a0a]/60 border border-white/5 hover:border-accent-violet/30 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default">
             <div className="flex items-center justify-between mb-4">
                 <span className="text-[10px] font-bold text-accent-violet tracking-widest uppercase bg-accent-violet/10 px-2.5 py-1 rounded-full border border-accent-violet/20">
                     {item.tag}
@@ -170,7 +170,7 @@ function EventCard({ item }: { item: typeof eventsData[0] }) {
 
 function PitchDeckCard({ item }: { item: PitchDeck }) {
     return (
-        <div className="flex-shrink-0 w-[300px] mx-3 glass-card rounded-2xl p-5 bg-[#0a0a0a]/60 border border-white/5 hover:border-white/20 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default relative">
+        <div className="flex-shrink-0 w-[330px] mx-3 glass-card rounded-2xl p-6 bg-[#0a0a0a]/60 border border-white/5 hover:border-white/20 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default relative">
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
                     <i className="fas fa-file-powerpoint text-white/40 text-sm"></i>
