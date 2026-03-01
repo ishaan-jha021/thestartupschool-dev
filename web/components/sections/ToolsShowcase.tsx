@@ -171,9 +171,6 @@ function EventCard({ item }: { item: typeof eventsData[0] }) {
 function PitchDeckCard({ item }: { item: PitchDeck }) {
     return (
         <div className="flex-shrink-0 w-[300px] mx-3 glass-card rounded-2xl p-5 bg-[#0a0a0a]/60 border border-white/5 hover:border-white/20 hover:-translate-y-2 transition-all duration-300 ease-out cursor-default relative">
-            <div className="absolute top-3 right-3">
-                <span className="text-[9px] font-bold text-white/30 tracking-widest uppercase bg-white/5 px-2 py-0.5 rounded-full border border-white/10">Coming Soon</span>
-            </div>
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
                     <i className="fas fa-file-powerpoint text-white/40 text-sm"></i>
@@ -183,10 +180,17 @@ function PitchDeckCard({ item }: { item: PitchDeck }) {
                     <p className="text-text-secondary text-[10px]">{item.sector} · {item.year}</p>
                 </div>
             </div>
-            <p className="text-text-secondary text-[11px] leading-relaxed mb-3 line-clamp-2 italic">&ldquo;{item.keyLesson}&rdquo;</p>
-            <div className="flex gap-2 flex-wrap">
-                <span className="text-[10px] font-bold text-white/50 tracking-widest uppercase bg-white/5 px-2 py-1 rounded-full border border-white/10">{item.round}</span>
-                <span className="text-[10px] font-bold text-green-400 tracking-widest uppercase bg-green-400/10 px-2 py-1 rounded-full border border-green-400/20">{item.raisedThisRound}</span>
+            <p className="text-text-secondary text-[11px] leading-relaxed mb-3 line-clamp-3 italic">&ldquo;{item.keyLesson}&rdquo;</p>
+            <div className="flex items-center justify-between mt-auto">
+                <div className="flex gap-2 flex-wrap">
+                    <span className="text-[10px] font-bold text-white/50 tracking-widest uppercase bg-white/5 px-2 py-1 rounded-full border border-white/10">{item.round}</span>
+                    <span className="text-[10px] font-bold text-green-400 tracking-widest uppercase bg-green-400/10 px-2 py-1 rounded-full border border-green-400/20">{item.raisedThisRound}</span>
+                </div>
+                <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer"
+                    className="text-white/30 hover:text-white text-xs transition-colors ml-2"
+                    onClick={e => e.stopPropagation()}>
+                    <i className="fas fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
             </div>
         </div>
     );
@@ -292,25 +296,25 @@ export function ToolsShowcase() {
                 </div>
             </section>
 
-            {/* 5. Pitch Deck Repo — Coming Soon */}
+            {/* 5. Pitch Deck Library — LIVE */}
             <section className="py-28 bg-bg-main relative overflow-hidden w-full border-t border-white/5">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/3 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-500/5 rounded-full blur-[120px] pointer-events-none" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 mb-16 text-center">
-                    <span className="text-white/30 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">Coming Soon</span>
+                    <span className="text-rose-400 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">Pitch Deck Library · India Edition</span>
                     <h2 className="text-4xl md:text-5xl font-black text-white tracking-[-0.04em] mb-5">
-                        Study How the{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/60 to-white/30">Greats Pitched.</span>
+                        Study How India&apos;s Best{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">Founders Pitched.</span>
                     </h2>
                     <p className="text-lg md:text-xl text-text-secondary font-light max-w-2xl mx-auto">
-                        A massive curated collection of winning pitch decks from YC startups, unicorns, and top global founders — to study, not copy.
+                        35+ verified funding stories from Razorpay, CRED, Zerodha, Meesho &amp; more — with the single key lesson from each raise.
                     </p>
                 </div>
-                <Marquee speed={35}>
+                <Marquee speed={40}>
                     {pitchDecks.map((item, i) => <PitchDeckCard key={`pitch-${i}`} item={item} />)}
                 </Marquee>
                 <div className="mt-14 text-center relative z-10">
-                    <Link href="/tools" className="group inline-flex items-center text-white/40 hover:text-white font-bold text-base transition duration-300">
-                        Notify Me When Live <i className="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                    <Link href="/tools" className="group inline-flex items-center text-rose-400 hover:text-white font-bold text-base transition duration-300">
+                        Explore Full Library <i className="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
                     </Link>
                 </div>
             </section>
