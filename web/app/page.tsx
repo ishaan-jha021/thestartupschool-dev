@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Hero } from "@/components/sections/Hero";
 import { MentorsPreview } from "@/components/sections/MentorsPreview";
 import { ToolsShowcase } from "@/components/sections/ToolsShowcase";
+import { VideoAndGallery } from "@/components/sections/VideoAndGallery";
 import { Contact } from "@/components/sections/Contact";
 import { mentorsData } from "@/lib/mentors";
 
@@ -31,6 +32,7 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center justify-between">
           <Hero />
           <MentorsPreview />
+          <VideoAndGallery />
           <ToolsShowcase />
           <Contact />
         </main>
